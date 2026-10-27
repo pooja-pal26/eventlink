@@ -1,0 +1,435 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Rangeelo Design System - Rajasthani Vibrant Theme
+   Inspired by NDDB Dairy Services with warm earthy colors
+   All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Core Colors - Warm Earthy Palette */
+    --background: 40 33% 98%;
+    --foreground: 25 30% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 25 30% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 25 30% 15%;
+
+    /* Primary - Terracotta/Burnt Orange (NDDB inspired) */
+    --primary: 24 75% 45%;
+    --primary-foreground: 40 33% 98%;
+
+    /* Secondary - Deep Maroon/Wine */
+    --secondary: 350 55% 35%;
+    --secondary-foreground: 40 33% 98%;
+
+    /* Muted - Warm Sand */
+    --muted: 38 30% 92%;
+    --muted-foreground: 25 15% 45%;
+
+    /* Accent - Golden Yellow (Rajasthani festive) */
+    --accent: 45 90% 55%;
+    --accent-foreground: 25 30% 15%;
+
+    /* Success - Fresh Green for nature/agriculture */
+    --success: 142 55% 40%;
+    --success-foreground: 40 33% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 40 33% 98%;
+
+    --border: 30 20% 85%;
+    --input: 30 20% 85%;
+    --ring: 24 75% 45%;
+
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(24 75% 45%) 0%, hsl(350 55% 35%) 100%);
+    --gradient-golden: linear-gradient(135deg, hsl(45 90% 55%) 0%, hsl(35 85% 50%) 100%);
+    --gradient-warm: linear-gradient(180deg, hsl(40 33% 98%) 0%, hsl(38 30% 92%) 100%);
+
+    /* Shadows */
+    --shadow-soft: 0 4px 20px -4px hsl(25 30% 15% / 0.1);
+    --shadow-glow: 0 0 30px hsl(24 75% 45% / 0.3);
+    --shadow-card: 0 8px 30px -8px hsl(25 30% 15% / 0.12);
+
+    /* Sidebar */
+    --sidebar-background: 25 30% 12%;
+    --sidebar-foreground: 40 33% 95%;
+    --sidebar-primary: 24 75% 50%;
+    --sidebar-primary-foreground: 40 33% 98%;
+    --sidebar-accent: 25 25% 20%;
+    --sidebar-accent-foreground: 40 33% 95%;
+    --sidebar-border: 25 20% 25%;
+    --sidebar-ring: 24 75% 45%;
+  }
+
+  .dark {
+    --background: 25 30% 8%;
+    --foreground: 40 33% 95%;
+
+    --card: 25 25% 12%;
+    --card-foreground: 40 33% 95%;
+
+    --popover: 25 25% 12%;
+    --popover-foreground: 40 33% 95%;
+
+    --primary: 24 80% 55%;
+    --primary-foreground: 25 30% 8%;
+
+    --secondary: 350 50% 45%;
+    --secondary-foreground: 40 33% 95%;
+
+    --muted: 25 20% 18%;
+    --muted-foreground: 30 15% 65%;
+
+    --accent: 45 85% 60%;
+    --accent-foreground: 25 30% 8%;
+
+    --success: 142 50% 45%;
+    --success-foreground: 25 30% 8%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 40 33% 95%;
+
+    --border: 25 20% 22%;
+    --input: 25 20% 22%;
+    --ring: 24 80% 55%;
+
+    --sidebar-background: 25 30% 6%;
+    --sidebar-foreground: 40 33% 95%;
+    --sidebar-primary: 24 80% 55%;
+    --sidebar-primary-foreground: 25 30% 8%;
+    --sidebar-accent: 25 25% 15%;
+    --sidebar-accent-foreground: 40 33% 95%;
+    --sidebar-border: 25 20% 18%;
+    --sidebar-ring: 24 80% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply py-16 md:py-24 px-4 md:px-8;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-hero);
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 10px hsl(25 30% 15% / 0.3);
+  }
+
+  .animate-scroll {
+    animation: scroll 30s linear infinite;
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s ease-out forwards;
+}
+
+.animate-delay-100 {
+  animation-delay: 100ms;
+}
+
+.animate-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animate-delay-300 {
+  animation-delay: 300ms;
+}
+
+.animate-delay-400 {
+  animation-delay: 400ms;
+}
+
+.animate-delay-500 {
+  animation-delay: 500ms;
+}
+
+/* ===== Hero Slider Styles ===== */
+
+/* Ensure Swiper fills the container */
+.hero-slider-section .swiper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+
+.hero-slider-section .swiper-slide {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-slider-section .swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 10%;
+}
+
+/* Mobile: prevent image cropping on portrait screens */
+@media (max-width: 767px) {
+  .hero-slider-section .swiper-slide {
+    background: #1a0a0a;
+  }
+
+  .hero-slider-section .swiper-slide img {
+    object-fit: contain;
+    object-position: center center;
+  }
+}
+
+/* Glassmorphism Cards */
+.hero-glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease;
+}
+
+.hero-glass-card:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+/* Logo Glass Container */
+.hero-logo-glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  transition: all 0.4s ease;
+}
+
+.hero-logo-glass:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
+}
+
+/* Hero Badge */
+.hero-badge {
+  background: linear-gradient(135deg, rgba(255, 153, 51, 0.3), rgba(139, 26, 26, 0.3));
+  border: 1px solid rgba(255, 153, 51, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Headline Text Shadow */
+.hero-headline {
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Tagline Banner - dark side-banner from left edge */
+.hero-tagline-banner {
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.55) 80%, rgba(0, 0, 0, 0) 100%);
+  border-radius: 0 1rem 1rem 0;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.hero-tagline-banner h1 {
+  font-family: 'Noto Serif Devanagari', serif;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+}
+
+/* CTA Button Enhancements */
+.hero-cta-primary {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-cta-primary::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 70%
+  );
+  animation: hero-shimmer 3s ease-in-out infinite;
+}
+
+.hero-cta-secondary {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.hero-cta-secondary:hover {
+  border-color: rgba(255, 153, 51, 0.6);
+  box-shadow: 0 0 20px rgba(255, 153, 51, 0.15);
+}
+
+@keyframes hero-shimmer {
+  0% {
+    transform: translateX(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(45deg);
+  }
+}
+
+/* Custom Pagination Dots */
+.hero-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.hero-dot:hover {
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(1.2);
+}
+
+.hero-dot-active {
+  background: linear-gradient(135deg, #FF9933, #FFD700) !important;
+  border-color: rgba(255, 215, 0, 0.5) !important;
+  transform: scale(1.3);
+  box-shadow: 0 0 12px rgba(255, 153, 51, 0.5);
+}
+
+/* Override default Swiper pagination positioning */
+.hero-slider-section .swiper-pagination {
+  position: static !important;
+}
+
+/* Hide Swiper default nav buttons */
+.hero-slider-section .swiper-button-prev,
+.hero-slider-section .swiper-button-next {
+  display: none !important;
+}
+
+/* Custom Arrow Buttons */
+.hero-arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0.6;
+}
+
+.hero-arrow:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  opacity: 1;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.hero-arrow:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+@media (max-width: 767px) {
+  .hero-arrow {
+    width: 36px;
+    height: 36px;
+  }
+}
