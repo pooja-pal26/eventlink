@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useInView, animate } from 'framer-motion';
 import { Trophy, Award, TrendingUp, Users } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useSearchParams, useNavigate, useParams } from 'react-router-dom';
 
 /** Animated counter that counts up from 0 when scrolled into view */
 const CountUp = ({ target, decimals = 0, delay = 0 }: { target: number; decimals?: number; delay?: number }) => {
@@ -37,9 +37,10 @@ const CountUp = ({ target, decimals = 0, delay = 0 }: { target: number; decimals
 export const HeroSection = () => {
   const { scrollY } = useScroll();
   const { language } = useLanguage();
+  const { city: pathCity } = useParams<{ city?: string }>();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const city = searchParams.get('city')?.toLowerCase();
+  const city = (pathCity || searchParams.get('city') || 'kashi').toLowerCase();
   const isJaipur = city === 'jaipur';
   const y1 = useTransform(scrollY, [0, 500], [0, 100]);
   const y2 = useTransform(scrollY, [0, 500], [0, -100]);
@@ -73,7 +74,7 @@ export const HeroSection = () => {
           {/* Location Switcher Pills
           <div className="inline-flex items-center gap-2 p-1.5 bg-white/80 backdrop-blur-md rounded-full border border-[#D4AF37]/30 shadow-md mb-6">
             <button
-              onClick={() => navigate('/pashu-mela?city=jaipur')}
+              onClick={() => navigate('/pashu-mela/jaipur')}
               className={`px-5 py-2 rounded-full text-xs md:text-sm font-bold transition-all cursor-pointer ${
                 isJaipur
                   ? "bg-gradient-to-r from-[#7B1E3A] to-[#D97706] text-white shadow-md"
@@ -83,7 +84,7 @@ export const HeroSection = () => {
               {language === 'hi' ? 'रंगीलो जयपुर' : 'Rangeelo Jaipur'}
             </button>
             <button
-              onClick={() => navigate('/pashu-mela?city=kashi')}
+              onClick={() => navigate('/pashu-mela/kashi')}
               className={`px-5 py-2 rounded-full text-xs md:text-sm font-bold transition-all cursor-pointer ${
                 !isJaipur
                   ? "bg-gradient-to-r from-[#7B1E3A] to-[#D97706] text-white shadow-md"

@@ -3,6 +3,12 @@
 .env.local
 .env.*.local
 
+# Large videos (>100MB) excluded from git tracking
+/src/assets/grandPashuMela/Wrap up Vo.mp4
+/src/assets/grandPashuMela/Website Rangeelo 2.O.mp4
+/src/assets/grandPashuMela/Wrap up Vo_compressed.mp4
+/src/assets/grandPashuMela/Wrap up Vo_web.mp4
+
 # Database backups - contain personal data, DO NOT COMMIT
 backups/
 

@@ -42,12 +42,12 @@ const Header = () => {
 
   const pashuMelaOptions = [
     {
-      name: language === 'hi' ? 'रंगीलो जयपुर के विजेता' : 'Winners of Rangeelo Jaipur',
-      href: '/pashu-mela?city=jaipur',
+      name: language === 'hi' ? 'रंगीलो काशी के विजेता' : 'Winners of Rangeelo Kashi',
+      href: '/pashu-mela/kashi',
     },
     {
-      name: language === 'hi' ? 'रंगीलो काशी के विजेता' : 'Winners of Rangeelo Kashi',
-      href: '/pashu-mela?city=kashi',
+      name: language === 'hi' ? 'रंगीलो जयपुर के विजेता' : 'Winners of Rangeelo Jaipur',
+      href: '/pashu-mela/jaipur',
     },
   ];
 
@@ -208,11 +208,11 @@ const Header = () => {
                             }}
                             className={cn(
                               "flex items-center justify-between px-4 py-3 text-sm font-medium text-foreground hover:bg-primary/10 hover:text-primary transition-colors border-b border-border/30 last:border-b-0",
-                              (location.pathname + location.search) === opt.href && "font-bold bg-muted/40"
+                              (location.pathname === opt.href || (location.pathname + location.search) === opt.href || (location.pathname === '/pashu-mela' && location.search.toLowerCase().includes(opt.href.split('/').pop()!))) && "font-bold bg-muted/40"
                             )}
                           >
                             <span>{opt.name}</span>
-                            {(location.pathname + location.search) === opt.href && (
+                            {(location.pathname === opt.href || (location.pathname + location.search) === opt.href || (location.pathname === '/pashu-mela' && location.search.toLowerCase().includes(opt.href.split('/').pop()!))) && (
                               <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                             )}
                           </Link>
@@ -364,11 +364,11 @@ const Header = () => {
                             }}
                             className={cn(
                               "flex items-center justify-between px-4 py-3 text-sm font-semibold text-foreground hover:bg-primary/10 hover:text-primary transition-colors border-b border-border/30 last:border-b-0",
-                              (location.pathname + location.search) === opt.href && "font-bold bg-muted/40"
+                              (location.pathname === opt.href || (location.pathname + location.search) === opt.href || (location.pathname === '/pashu-mela' && location.search.toLowerCase().includes(opt.href.split('/').pop()!))) && "font-bold bg-muted/40"
                             )}
                           >
                             <span>{opt.name}</span>
-                            {(location.pathname + location.search) === opt.href && (
+                            {(location.pathname === opt.href || (location.pathname + location.search) === opt.href || (location.pathname === '/pashu-mela' && location.search.toLowerCase().includes(opt.href.split('/').pop()!))) && (
                               <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                             )}
                           </Link>

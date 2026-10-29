@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useParams } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-// Import images
+// Import Jaipur images
 import img1 from '@/assets/grandPashuMela/BSP_9813.JPG (1).jpeg';
 import img2 from '@/assets/grandPashuMela/BSP_9823.JPG.jpeg';
 import img3 from '@/assets/grandPashuMela/BSP_9846.JPG.jpeg';
@@ -22,6 +22,14 @@ import img12 from '@/assets/grandPashuMela/Rathi 2nd Rangeelo.jpg (1).jpeg';
 // import img15 from '@/assets/grandPashuMela/Tharparkar 3rd Rangeelo.jpg (1).jpeg';
 import img16 from '@/assets/grandPashuMela/WhatsApp Image 2026-03-10 at 1.27.31 PM (1).jpeg';
 
+// Import Kashi images
+import kashiImg1 from '@/assets/SliderImagess/DSC_4379.webp';
+import kashiImg2 from '@/assets/SliderImagess/DSC_4411.webp';
+import kashiImg3 from '@/assets/SliderImagess/DSC_4599.webp';
+import kashiImg4 from '@/assets/SliderImagess/DSC_4148.webp';
+import kashiImg5 from '@/assets/SliderImagess/DSC_4365.webp';
+import kashiImg6 from '@/assets/SliderImagess/DSC_4665.webp';
+
 interface Slide {
   image: string;
   subtitle: string;
@@ -29,10 +37,49 @@ interface Slide {
   description: string;
 }
 
-const slides: Slide[] = [
+const kashiSlides: Slide[] = [
+  {
+    image: kashiImg1,
+    subtitle: "One of India's Largest Pashu Mela Kashi",
+    title: 'Grand Pashu Mela\nMilking Competition Kashi 2026',
+    description: "Celebrating India's finest dairy farmers, superior genetics, and record-breaking milk yields at Rangeelo Kashi.",
+  },
+  {
+    image: kashiImg2,
+    subtitle: 'Indigenous Breed Champions',
+    title: 'Excellence in\nNative Breeds',
+    description: 'Showcasing the finest Gangatiri, Sahiwal, and indigenous breeds of Purvanchal and Northern India.',
+  },
+  {
+    image: kashiImg3,
+    subtitle: 'Award Distribution & Honours',
+    title: 'Felicitating Champions\nRangeelo Kashi 2026',
+    description: 'Honouring progressive dairy farmers with prestigious awards, cash prizes, and national recognition.',
+  },
+  {
+    image: kashiImg4,
+    subtitle: 'The Grand Gathering',
+    title: '50,000+ Farmers &\nVisitors at Kashi',
+    description: 'Farmers and breeders from across Uttar Pradesh, Bihar, and all over India gathered to witness dairy excellence.',
+  },
+  {
+    image: kashiImg5,
+    subtitle: 'Dignitaries & Dairy Leadership',
+    title: 'Where Champions\nAre Crowned',
+    description: 'Renowned dairy scientists and expert judges evaluate every breed for conformation and yield potential.',
+  },
+  {
+    image: kashiImg6,
+    subtitle: 'Superior Genetics & Heritage',
+    title: 'Future of Dairy\nFarming in India',
+    description: 'Building a sustainable, high-yielding future through the preservation and promotion of pure indigenous cattle.',
+  },
+];
+
+const jaipurSlides: Slide[] = [
   {
     image: img1,
-    subtitle: "One of India's Largest Pashu Mela",
+    subtitle: "One of India's Largest Pashu Mela Jaipur",
     title: 'Grand Pashu Mela\nMilking Competition 2026',
     description: 'Celebrating India\'s finest dairy farmers, superior genetics, and record-breaking milk yields at Rangeelo.',
   },
@@ -131,22 +178,21 @@ const slides: Slide[] = [
 const AUTO_SLIDE_INTERVAL = 5000; // 5 seconds
 
 export const GrandMelaSlider = () => {
+  const { city: pathCity } = useParams<{ city?: string }>();
   const [searchParams] = useSearchParams();
   const { language } = useLanguage();
-  const isJaipur = searchParams.get('city')?.toLowerCase() === 'jaipur';
+  const city = (pathCity || searchParams.get('city') || 'kashi').toLowerCase();
+  const isJaipur = city === 'jaipur';
 
-  const activeSlides = [
-    {
-      ...slides[0],
-      title: isJaipur
-        ? 'Grand Pashu Mela\nMilking Competition Jaipur 2026'
-        : 'Grand Pashu Mela\nMilking Competition Kashi 2026',
-    },
-    ...slides.slice(1),
-  ];
+  const activeSlides = isJaipur ? jaipurSlides : kashiSlides;
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(1); // 1 = forward, -1 = backward
+
+  // Reset to first slide when switching cities
+  useEffect(() => {
+    setCurrentIndex(0);
+  }, [city]);
 
   const goToSlide = useCallback((index: number) => {
     setDirection(index > currentIndex ? 1 : -1);
@@ -182,8 +228,8 @@ export const GrandMelaSlider = () => {
             alt={currentSlide.title}
             className="w-full h-full object-cover"
             style={{
-    objectPosition: "center 5%",
-  }}
+              objectPosition: "center 10%",
+            }}
             draggable={false}
           />
         </motion.div>

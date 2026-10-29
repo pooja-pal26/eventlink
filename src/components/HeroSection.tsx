@@ -13,13 +13,13 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 // Import all slider images
-// Rangeelo Kashi 2026 photos - shown first
-import kashi1 from '@/assets/SliderImagess/DSC_4148.jpg';
-import kashi2 from '@/assets/SliderImagess/DSC_4365.jpg';
-import kashi3 from '@/assets/SliderImagess/DSC_4379.jpg';
-import kashi4 from '@/assets/SliderImagess/DSC_4411.jpg';
-import kashi5 from '@/assets/SliderImagess/DSC_4599.jpg';
-import kashi6 from '@/assets/SliderImagess/DSC_4665.jpg';
+// Rangeelo Kashi 2026 photos - shown first (WebP optimized for instant loading)
+import kashi1 from '@/assets/SliderImagess/DSC_4148.webp';
+import kashi2 from '@/assets/SliderImagess/DSC_4365.webp';
+import kashi3 from '@/assets/SliderImagess/DSC_4379.webp';
+import kashi4 from '@/assets/SliderImagess/DSC_4411.webp';
+import kashi5 from '@/assets/SliderImagess/DSC_4599.webp';
+import kashi6 from '@/assets/SliderImagess/DSC_4665.webp';
 import slide1 from '@/assets/SliderImagess/1 (3).png';
 import slide2 from '@/assets/SliderImagess/2.webp';
 import slide5 from '@/assets/SliderImagess/DEEP8797.JPG.jpeg';
@@ -37,27 +37,43 @@ import slide22 from '@/assets/SliderImagess/xo0ouuzyhhkfleqro0eu.webp';
 import slide23 from '@/assets/SliderImagess/xsrilhpnjhqzt0oiccrk.webp';
 import slide24 from '@/assets/SliderImagess/cattle show jpg.jpeg';
 
-// Import video
-import stallsVideo from '@/assets/grandPashuMela/Stalls Updated.mp4';
+// Import exhibition video clips (10s trimmed clips starting at requested timestamps)
+import websiteRangeeloExhibitor10s from '@/assets/grandPashuMela/Website_rangeelo_exhibitor_10s.mp4';
+import wrapUpExhibitor10s from '@/assets/grandPashuMela/Wrap_up_exhibitor_10s.mp4';
 
-const sliderImages = [
-  kashi1, kashi2, kashi3, kashi4, kashi5, kashi6,
-  slide1, slide2,
-  slide5,
-  slide7, slide8,
-  slide10, slide11,
-  slide15,
-  slide16, slide17, slide18, slide20, slide21, slide22, slide23,slide24
+const kashiImages = [kashi1, kashi2, kashi3, kashi4, kashi5, kashi6];
+const jaipurImages = [
+  slide8, slide10, slide11, slide24,
+  slide2, slide7, slide21, slide22,
+  slide23, slide1, slide5, slide15,
+  slide16, slide17, slide18, slide20
 ];
 
-// Heading text mapped to each slide source
+const videoList = [
+  wrapUpExhibitor10s,          // Wrap up Vo clip (1:27 mark, 10s exhibitor clip)
+  websiteRangeeloExhibitor10s, // Website Rangeelo 2.O clip (22s mark, 10s exhibitor clip)
+];
+
+// Heading & stats text mapped to each slide source
 const slideHeadings: Record<string, { number?: string; label: string; labelHi?: string }> = {
+  // Rangeelo Kashi 2026 (Shown first - Latest edition stats)
+  [kashi1]: { number: '50,000+', label: 'Farmers &\nVisitors', labelHi: 'किसान एवं\nआगंतुक' },
+  [kashi2]: { number: '₹ 50 Lakh+', label: 'Prize Money\nMilking Competition', labelHi: 'कुल पुरस्कार राशि\nदुग्ध दोहन प्रतियोगिता' },
+  [kashi3]: { number: '21', label: 'Milking Champions\nHonoured', labelHi: 'दुग्ध दोहन विजेता\nसम्मानित' },
+  [kashi4]: { number: '7', label: 'Indigenous & High-Yield\nBreed Categories', labelHi: 'स्वदेशी एवं उन्नत\nनस्ल श्रेणियाँ' },
+  [kashi5]: { number: '500+', label: 'Progressive Farmers\n& Delegates', labelHi: 'प्रगतिशील किसान\nएवं प्रतिनिधि' },
+  [kashi6]: { number: '150+', label: 'Exhibition Stalls\n& Live Zones', labelHi: 'प्रदर्शनी स्टॉल\nएवं लाइव ज़ोन' },
+
+  // Exhibition Videos (10s exhibitor clips)
+  [wrapUpExhibitor10s]: { number: '150+', label: 'Exhibitors', labelHi: 'प्रदर्शक' },
+  [websiteRangeeloExhibitor10s]: { number: '150+', label: 'Exhibitors', labelHi: 'प्रदर्शक' },
+
+  // Rangeelo Jaipur
   [slide8]: { number: '10+', label: 'Cultural & Folk\nPerformances', labelHi: 'सांस्कृतिक एवं लोक कला\nप्रदर्शन' },
   [slide10]: { label: 'Progressive Farmer\nInteractions', labelHi: 'प्रगतिशील किसान\nसंवाद' },
   [slide11]: { number: '50,000+', label: 'Visitors\n(Farmers & Students)', labelHi: 'आगंतुक\n(किसान एवं छात्र)' },
   [slide24]: { number: '7+', label: 'High Genetic\nMerit Breeds', labelHi: 'उच्च आनुवंशिक\nयोग्यता वाली नस्लें' },
   [slide22]: { number: '500+', label: 'Delegates', labelHi: 'प्रतिनिधि' },
-  [stallsVideo]: { number: '150+', label: 'Exhibitors', labelHi: 'प्रदर्शक' },
   [slide2]: { number: '150+', label: 'Pashu Mela\nParticipants', labelHi: 'पशु मेला\nप्रतिभागी' },
   [slide7]: { number: '150+', label: 'Pashu Mela\nParticipants', labelHi: 'पशु मेला\nप्रतिभागी' },
   [slide21]: { number: '50,000+', label: 'Visitors\n(Farmers & Students)', labelHi: 'आगंतुक\n(किसान एवं छात्र)' },
@@ -102,19 +118,33 @@ type SlideItem =
   | { type: 'image'; src: string }
   | { type: 'video'; src: string };
 
-function buildMixedSlides(images: string[], videoSrc: string): SlideItem[] {
+function buildMixedSlides(): SlideItem[] {
   const slides: SlideItem[] = [];
-  let imgIndex = 0;
-  while (imgIndex < images.length) {
-    for (let i = 0; i < 2 && imgIndex < images.length; i++, imgIndex++) {
-      slides.push({ type: 'image', src: images[imgIndex] });
-    }
-    slides.push({ type: 'video', src: videoSrc });
+
+  // 1. All Kashi images first (as requested)
+  kashiImages.forEach((src) => {
+    slides.push({ type: 'image', src });
+  });
+
+  // 2. First 10s exhibitor video clip right after Kashi images
+  if (videoList[0]) {
+    slides.push({ type: 'video', src: videoList[0] });
   }
+
+  // 3. Jaipur images interleaved with the second 10s exhibitor video clip
+  let vIndex = 1;
+  for (let i = 0; i < jaipurImages.length; i++) {
+    slides.push({ type: 'image', src: jaipurImages[i] });
+    if ((i + 1) % 4 === 0 && vIndex < videoList.length) {
+      slides.push({ type: 'video', src: videoList[vIndex] });
+      vIndex++;
+    }
+  }
+
   return slides;
 }
 
-const mixedSlides = buildMixedSlides(sliderImages, stallsVideo);
+const mixedSlides = buildMixedSlides();
 
 const IMAGE_SLIDE_DURATION_MS = 4000;
 
@@ -169,14 +199,27 @@ const HeroSection = () => {
     }
   }, []);
 
-  // Pauses + rewinds every video and strips any stale `ended` listeners.
+  // Preload all slider images on mount to eliminate blank screen when transitioning
+  useEffect(() => {
+    [...kashiImages, ...jaipurImages].forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+  
+  // Pauses other videos and strips stale listeners without wiping decoded frames
   const pauseAllVideos = useCallback(() => {
-    const swiperEl = swiperRef.current?.el;
+    const swiper = swiperRef.current;
+    const swiperEl = swiper?.el;
     if (!swiperEl) return;
+    const activeSlideEl = swiper?.slides?.[swiper?.activeIndex];
+    const currentVideo = activeSlideEl?.querySelector('video');
+
     swiperEl.querySelectorAll('video').forEach((v: HTMLVideoElement) => {
-      v.pause();
-      v.currentTime = 0;
-      v.onended = null;
+      if (v !== currentVideo) {
+        v.pause();
+        v.onended = null;
+      }
     });
   }, []);
 
@@ -214,16 +257,24 @@ const HeroSection = () => {
       const videoEl = activeSlideEl?.querySelector('video') as HTMLVideoElement | null;
       if (!videoEl) return;
 
-      videoEl.currentTime = 0;
+      if (videoEl.currentTime > 0.5 && !videoEl.paused) {
+        videoEl.currentTime = 0;
+      }
       videoEl.onended = () => {
         swiper.slideNext();
       };
 
       if (!isPausedRef.current) {
-        videoEl.play().catch(() => {
-          // Autoplay blocked by the browser — don't stall the slider forever.
-          swiper.slideNext();
-        });
+        const playPromise = videoEl.play();
+        if (playPromise !== undefined) {
+          playPromise.catch((err) => {
+            console.warn('Video autoplay prevented', err);
+            // Autoplay blocked by the browser — advance gracefully after 5s instead of instant blank skip
+            if (!isPausedRef.current) {
+              scheduleImageAdvance(5000);
+            }
+          });
+        }
       }
     } else {
       setActiveIsVideo(false);
@@ -298,15 +349,15 @@ const HeroSection = () => {
   }, [clearAdvanceTimer, pauseAllVideos]);
 
   return (
-    <section id="hero" className="hero-slider-section relative min-h-screen flex items-end overflow-hidden">
+    <section id="hero" className="hero-slider-section relative min-h-screen flex items-end overflow-hidden bg-black">
       {/* Fullscreen Swiper Background */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 bg-black">
         <Swiper
           modules={[EffectFade, Navigation, Pagination]}
           effect="fade"
           fadeEffect={{ crossFade: true }}
           loop={true}
-          speed={1200}
+          speed={1000}
           pagination={{
             clickable: true,
             el: '.hero-pagination',
@@ -323,23 +374,24 @@ const HeroSection = () => {
           allowTouchMove={false}
         >
           {mixedSlides.map((slide, index) => (
-            <SwiperSlide key={index} className="w-full h-full">
+            <SwiperSlide key={index} className="w-full h-full bg-black">
               {slide.type === 'image' ? (
-                <div className="w-full h-full">
+                <div className="w-full h-full bg-black">
                   <img
                     src={slide.src}
                     alt={`Rangeelo Event ${index + 1}`}
                     className="w-full h-full object-cover"
-                    loading={index === 0 ? 'eager' : 'lazy'}
+                    loading="eager"
+                    decoding="async"
                   />
                 </div>
               ) : (
-                <div className="w-full h-full">
+                <div className="w-full h-full bg-black">
                   <video
                     src={slide.src}
                     muted
                     playsInline
-                    preload="metadata"
+                    preload="auto"
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -395,7 +447,8 @@ const HeroSection = () => {
       {/* Tagline */}
       <div className="relative z-10 w-full pb-5 md:pb-5">
         <div className="hero-tagline-banner inline-flex items-center pl-1 pr-1 md:pl-1 md:pr-2 lg:pl-3 lg:pr-2 py-1 md:py-2">
-          {activeIsVideo ? (
+          {/* Commented out as requested: "comment out this (image 1) Book Stall or jo bhi likha hh." */}
+          {/* {activeIsVideo ? (
             <div className="flex flex-col gap-1 md:gap-2 animate-fade-up">
               <h1 className="text-base md:text-xl lg:text-2xl font-extrabold tracking-tight drop-shadow-lg leading-snug" style={{ color: '#dd984a' }}>
                 Asia's Largest Celebration of Farmers, Livestock & Rural Prosperity
@@ -407,11 +460,11 @@ const HeroSection = () => {
                 Book a Stall
               </Link>
             </div>
-          ) : (
+          ) : ( */}
             <h1 className="text-lg md:text-2xl lg:text-3xl font-extrabold animate-fade-up tracking-tight whitespace-nowrap drop-shadow-lg" style={{ color: '#dd984a' }}>
               {t('hero.tagline')}
             </h1>
-          )}
+          {/* )} */}
         </div>
       </div>
 

@@ -1,24 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { pashuMelaData, BreedCategory, Winner } from '../../data/pashuMelaData';
+import { useParams, useSearchParams } from 'react-router-dom';
+import { kashiPashuMelaData, jaipurPashuMelaData, BreedCategory, Winner } from '../../data/pashuMelaData';
 import { Trophy, MapPin, Award } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { hiTranslations } from './translations';
+import { kashiHiTranslations, jaipurHiTranslations } from './translations';
 
 export const BreedShowcase = () => {
-  const [activeBreed, setActiveBreed] = useState<BreedCategory>(pashuMelaData[0]);
   const { language } = useLanguage();
+  const { city: pathCity } = useParams<{ city?: string }>();
+  const [searchParams] = useSearchParams();
+  const city = (pathCity || searchParams.get('city') || 'kashi').toLowerCase();
+  const isJaipur = city === 'jaipur';
+
+  const data = isJaipur ? jaipurPashuMelaData : kashiPashuMelaData;
+  const [activeBreed, setActiveBreed] = useState<BreedCategory>(data[0]);
+
+  // Keep selected breed tab in sync when city changes
+  useEffect(() => {
+    setActiveBreed(prev => data.find(b => b.id === prev?.id) || data[0]);
+  }, [city, data]);
 
   useEffect(() => {
     const handleTabChange = (e: CustomEvent<string>) => {
-      const breed = pashuMelaData.find(b => b.id === e.detail);
+      const targetId = (e.detail === 'hycb') ? 'hfcb' : e.detail;
+      const breed = data.find(b => b.id === targetId || b.id === e.detail);
       if (breed) {
         setActiveBreed(breed);
       }
     };
     window.addEventListener('changeBreedTab', handleTabChange as EventListener);
     return () => window.removeEventListener('changeBreedTab', handleTabChange as EventListener);
-  }, []);
+  }, [data]);
 
   return (
     <section id="breed-showcase" className="py-24 bg-white relative">
@@ -33,7 +46,7 @@ export const BreedShowcase = () => {
 
         {/* Breed Tabs Navigation */}
         <div className="flex flex-wrap justify-center gap-2 mb-16">
-          {pashuMelaData.map((breed) => (
+          {data.map((breed) => (
             <button
               key={breed.id}
               onClick={() => setActiveBreed(breed)}
@@ -56,9 +69,9 @@ export const BreedShowcase = () => {
                 breed.id === 'sahiwal' ? 'साहीवाल' :
                 breed.id === 'gir' ? 'गिर' :
                 breed.id === 'tharparkar' ? 'थारपारकर' :
-                breed.id === 'hycb' ? 'HYCB' :
+                breed.id === 'hfcb' || breed.id === 'hycb' ? 'HFCB' :
                 breed.id === 'jycb' ? 'JYCB' : breed.name
-              ) : breed.name}
+              ) : (breed.id === 'hfcb' || breed.id === 'hycb' ? 'HFCB' : breed.name)}
             </button>
           ))}
         </div>
@@ -76,13 +89,13 @@ export const BreedShowcase = () => {
             >
               {/* Top Winner Card (1st Place) */}
               {activeBreed.winners.filter(w => w.rank === 1).map((winner) => (
-                <WinnerCard key={winner.rank} winner={winner} isFirst={true} activeBreedId={activeBreed.id} />
+                <WinnerCard key={winner.rank} winner={winner} isFirst={true} activeBreedId={activeBreed.id} isJaipur={isJaipur} />
               ))}
 
               {/* 2nd and 3rd Place Cards */}
               <div className="grid md:grid-cols-2 gap-8 mt-8">
                 {activeBreed.winners.filter(w => w.rank !== 1).map((winner) => (
-                  <WinnerCard key={winner.rank} winner={winner} isFirst={false} activeBreedId={activeBreed.id} />
+                  <WinnerCard key={winner.rank} winner={winner} isFirst={false} activeBreedId={activeBreed.id} isJaipur={isJaipur} />
                 ))}
               </div>
 
@@ -98,9 +111,11 @@ export const BreedShowcase = () => {
   );
 };
 
-const WinnerCard = ({ winner, isFirst, activeBreedId }: { winner: Winner, isFirst: boolean, activeBreedId: string }) => {
+const WinnerCard = ({ winner, isFirst, activeBreedId, isJaipur }: { winner: Winner, isFirst: boolean, activeBreedId: string, isJaipur: boolean }) => {
   const { language } = useLanguage();
-  const trans = hiTranslations[activeBreedId]?.[winner.rank];
+  const transMap = isJaipur ? jaipurHiTranslations : kashiHiTranslations;
+  const transKey = activeBreedId === 'hycb' ? 'hfcb' : activeBreedId;
+  const trans = transMap[transKey]?.[winner.rank];
 
   const farmerName = language === 'hi' && trans ? trans.farmerNameHi : winner.farmerName;
   const location = language === 'hi' && trans ? trans.locationHi : winner.location;
@@ -109,7 +124,7 @@ const WinnerCard = ({ winner, isFirst, activeBreedId }: { winner: Winner, isFirs
 
   return (
     <div className={`flex flex-col ${isFirst ? 'lg:flex-row' : ''} bg-[#F8F5F0] rounded-3xl overflow-hidden shadow-xl border border-[#D4AF37]/30 hover:shadow-2xl transition-shadow group relative`}>
-      <div className={`relative overflow-hidden bg-[#3A2A1F]/5 flex items-center justify-center ${isFirst ? 'lg:w-1/2' : 'aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/3]'}`}>
+      <div className={`relative overflow-hidden bg-[#3A2A1F]/5 flex items-center justify-center ${isFirst ? 'lg:w-1/2 min-h-[320px]' : 'aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/3]'}`}>
         {winner.video ? (
           <video
             src={winner.video}
@@ -118,17 +133,18 @@ const WinnerCard = ({ winner, isFirst, activeBreedId }: { winner: Winner, isFirs
             muted
             loop
             playsInline
-            className={`w-full h-full ${isFirst ? 'object-cover' : 'object-cover'} transition-transform duration-700 group-hover:scale-105`}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
         ) : (
           <img 
             src={winner.image} 
             alt={`Winner ${winner.farmerName}`} 
-            className={`w-full h-full ${isFirst ? 'object-cover' : 'object-contain'} transition-transform duration-700 group-hover:scale-105`}
+            className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
           />
         )}
-        <div className={`absolute inset-0 ${isFirst ? 'bg-gradient-to-t' : 'bg-gradient-to-t'} from-black/60 via-transparent to-transparent pointer-events-none`} />
-        <div className="absolute bottom-4 left-4 flex items-center gap-2">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none" />
+
+        <div className="absolute bottom-4 left-4 flex items-center gap-2 z-10">
           <div className={`p-2 rounded-full ${
             winner.rank === 1 ? 'bg-yellow-400 text-yellow-900' :
             winner.rank === 2 ? 'bg-gray-300 text-gray-800' :

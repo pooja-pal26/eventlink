@@ -48,6 +48,7 @@ const App = () => {
                 <Route path="/" element={<Index />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/pashu-mela" element={<PashuMelaPage />} />
+                <Route path="/pashu-mela/:city" element={<PashuMelaPage />} />
                 {/* Public pass verification target for the QR codes */}
                 <Route path="/verify/:code" element={<VerifyPass />} />
                 <Route path="/terms" element={<Terms />} />

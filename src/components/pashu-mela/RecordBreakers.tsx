@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { motion, useMotionValue, useInView, animate } from 'framer-motion';
 import { Crown, Star, Medal, ArrowUpRight, Trophy, TrendingUp } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useParams } from 'react-router-dom';
 
 const CountUp = ({ target, decimals = 0, delay = 0 }: { target: number; decimals?: number; delay?: number }) => {
   const ref = useRef<HTMLSpanElement>(null);
@@ -35,8 +35,10 @@ const CountUp = ({ target, decimals = 0, delay = 0 }: { target: number; decimals
 
 export const RecordBreakers = () => {
   const { language } = useLanguage();
+  const { city: pathCity } = useParams<{ city?: string }>();
   const [searchParams] = useSearchParams();
-  const isJaipur = searchParams.get('city')?.toLowerCase() === 'jaipur';
+  const city = (pathCity || searchParams.get('city') || 'kashi').toLowerCase();
+  const isJaipur = city === 'jaipur';
 
   const records = [
     {
@@ -48,7 +50,7 @@ export const RecordBreakers = () => {
       color: "from-cyan-500 to-blue-600",
       glowColor: "rgba(6, 182, 212, 0.4)",
       link: "#breed-showcase",
-      tabId: "hycb"
+      tabId: "hfcb"
     },
     {
       title: language === 'hi' ? "सर्वश्रेष्ठ स्वदेशी नस्ल" : "Best Indigenous Breed",
@@ -96,7 +98,7 @@ export const RecordBreakers = () => {
       </div>
       
       <div className="container-custom mx-auto px-4 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-20">
+        <div className="text-center max-w-6xl mx-auto mb-20 px-2">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -112,7 +114,7 @@ export const RecordBreakers = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-100 to-zinc-500 mb-6 tracking-tight"
+            className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-100 to-zinc-500 mb-6 tracking-tight whitespace-normal md:whitespace-nowrap"
           >
             {isJaipur
               ? (language === 'hi' ? 'मुख्य श्रेणियाँ और रिकॉर्ड (रंगीलो जयपुर)' : 'Milestone Record Breakers (Rangeelo Jaipur)')
