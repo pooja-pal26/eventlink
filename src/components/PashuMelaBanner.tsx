@@ -33,16 +33,32 @@ const EDITIONS = [
   {
     id: 'kashi' as const,
     video: kashiVideo,
-    titleEn: "One of India's Largest Pashu Mela Kashi",
+    competitionEn: 'Milking Competition Rangeelo Kashi 2026',
+    competitionHi: 'मिल्किंग प्रतियोगिता रंगीलो काशी 2026',
+    titleEn: "One of India's Largest Pashu Mela",
     titleHi: "भारत के सबसे बड़े पशु मेलों में से एक (काशी)",
     href: '/pashu-mela/kashi',
+    stats: [
+      { target: 21, decimals: 0, prefix: '', suffixKg: false, suffixLakh: false, key: 'winners', icon: Award },
+      { target: 7, decimals: 0, prefix: '', suffixKg: false, suffixLakh: false, key: 'breeds', icon: Dna },
+      { target: 34.62, decimals: 2, prefix: '', suffixKg: true, suffixLakh: false, key: 'record_yield', icon: Droplets },
+      { target: 50, decimals: 0, prefix: '₹ ', suffixKg: false, suffixLakh: true, key: 'award_payouts', icon: Globe },
+    ],
   },
   {
     id: 'jaipur' as const,
     video: cattleShowVideo,
-    titleEn: "One of India's Largest Pashu Mela Jaipur",
+    competitionEn: 'Milking Competition Rangeelo Jaipur 2026',
+    competitionHi: 'मिल्किंग प्रतियोगिता रंगीलो जयपुर 2026',
+    titleEn: "One of India's Largest Pashu Mela",
     titleHi: "भारत के सबसे बड़े पशु मेलों में से एक (जयपुर)",
     href: '/pashu-mela/jaipur',
+    stats: [
+      { target: 24, decimals: 0, prefix: '', suffixKg: false, suffixLakh: false, key: 'winners', icon: Award },
+      { target: 8, decimals: 0, prefix: '', suffixKg: false, suffixLakh: false, key: 'breeds', icon: Dna },
+      { target: 64.4, decimals: 1, prefix: '', suffixKg: true, suffixLakh: false, key: 'record_yield', icon: Droplets },
+      { target: 50, decimals: 0, prefix: '₹ ', suffixKg: false, suffixLakh: true, key: 'award_payouts', icon: Globe },
+    ],
   },
 ];
 
@@ -67,12 +83,15 @@ const PashuMelaBanner = () => {
     return () => clearInterval(timer);
   }, [nextSlide]);
 
-  const stats = [
-    { target: 21, decimals: 0, prefix: "", suffix: "", label: t('pashu_mela.banner.winners'), icon: Award },
-    { target: 7, decimals: 0, prefix: "", suffix: "", label: t('pashu_mela.banner.breeds'), icon: Dna },
-    { target: 34.62, decimals: 2, prefix: "", suffix: language === 'hi' ? " किग्रा" : " Kg", label: t('pashu_mela.banner.record_yield'), icon: Droplets },
-    { target: 50, decimals: 0, prefix: "₹ ", suffix: language === 'hi' ? " लाख +" : " Lakh +", label: t('pashu_mela.banner.award_payouts'), icon: Globe },
-  ];
+  const currentStats = currentEdition.stats.map((s) => ({
+    ...s,
+    label: t(`pashu_mela.banner.${s.key}`),
+    suffix: s.suffixKg
+      ? (language === 'hi' ? ' किग्रा' : ' Kg')
+      : s.suffixLakh
+      ? (language === 'hi' ? ' लाख +' : ' Lakh +')
+      : '',
+  }));
 
   return (
     <section className="relative py-20 overflow-hidden bg-black">
@@ -121,9 +140,18 @@ const PashuMelaBanner = () => {
           >
             <div className="flex items-center gap-3 mb-4">
               <Trophy className="w-8 h-8 text-[#D4AF37]" />
-              <span className="text-[#D4AF37] font-bold tracking-widest uppercase text-sm">
-                {t('pashu_mela.banner.competition')}
-              </span>
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={currentEdition.id}
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 5 }}
+                  transition={{ duration: 0.3 }}
+                  className="text-[#D4AF37] font-bold tracking-widest uppercase text-sm"
+                >
+                  {language === 'hi' ? currentEdition.competitionHi : currentEdition.competitionEn}
+                </motion.span>
+              </AnimatePresence>
             </div>
             
             {/* Dynamic Title: Shows Kashi when Kashi video plays, and Jaipur when Jaipur video plays */}
@@ -144,14 +172,13 @@ const PashuMelaBanner = () => {
               {t('pashu_mela.banner.desc')}
             </p>
 
-            {/* Same content & stats cards for both */}
+            {/* Edition-specific stats cards */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 mb-10 max-w-3xl">
-              {stats.map((stat, index) => (
-                <Link to={currentEdition.href} key={index} className="block h-full">
+              {currentStats.map((stat, index) => (
+                <Link to={currentEdition.href} key={`${currentEdition.id}-${index}`} className="block h-full">
                   <motion.div 
                     initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1, duration: 0.5 }}
                     className="h-full flex flex-col bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-5 hover:bg-white/10 hover:border-white/20 transition-all cursor-pointer group"
                   >
@@ -159,7 +186,7 @@ const PashuMelaBanner = () => {
                       <stat.icon className="w-6 h-6" />
                     </div>
                     <div className="text-2xl lg:text-3xl font-bold text-white mb-2 group-hover:text-[#D4AF37] transition-colors whitespace-nowrap tracking-tight">
-                      {stat.prefix}<CountUp target={stat.target} decimals={stat.decimals} delay={index * 0.15} />{stat.suffix}
+                      {stat.prefix}<CountUp key={`${currentEdition.id}-${index}`} target={stat.target} decimals={stat.decimals} delay={index * 0.1} />{stat.suffix}
                     </div>
                     <div className="text-sm font-medium text-white/60 uppercase tracking-wider mt-auto pt-2">
                       {stat.label}

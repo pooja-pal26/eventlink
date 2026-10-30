@@ -18,13 +18,13 @@ const kashiQuotes: Record<string, { quoteEn: string; quoteHi: string; breedLabel
     quoteEn: 'Setting the standard in high-yield crossbreed dairying.',
     quoteHi: 'उच्च-उत्पादन क्रॉस-ब्रीड डेयरी में नए मानक स्थापित करना।',
     breedLabelEn: 'HFCB',
-    breedLabelHi: 'HFCB (हाई-यील्ड क्रॉस-ब्रीड)',
+    breedLabelHi: 'HFCB',
   },
   hycb: {
     quoteEn: 'Setting the standard in high-yield crossbreed dairying.',
     quoteHi: 'उच्च-उत्पादन क्रॉस-ब्रीड डेयरी में नए मानक स्थापित करना।',
     breedLabelEn: 'HFCB',
-    breedLabelHi: 'HFCB (हाई-यील्ड क्रॉस-ब्रीड)',
+    breedLabelHi: 'HFCB',
   },
   jycb: {
     quoteEn: 'A testament to consistency and Jersey crossbreed performance.',
@@ -73,10 +73,10 @@ export const SuccessStories = () => {
 
   const data = isJaipur ? jaipurPashuMelaData : kashiPashuMelaData;
 
-  // Extract winners that have quotes or are 1st place to feature as success stories
+  // Only 1st prize winners are featured as success stories
   const stories = data.flatMap(breed => 
     breed.winners
-      .filter(w => w.quote || w.rank === 1)
+      .filter(w => w.rank === 1)
       .map(w => ({ ...w, breedName: breed.name, breedId: breed.id }))
   );
 

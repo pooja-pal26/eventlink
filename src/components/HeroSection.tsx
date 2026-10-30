@@ -1,8 +1,7 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useRef, useEffect, useCallback, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectFade, Navigation, Pagination } from 'swiper/modules';
+import { EffectFade, Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import type { Swiper as SwiperType } from 'swiper';
 
@@ -16,10 +15,13 @@ import 'swiper/css/navigation';
 // Rangeelo Kashi 2026 photos - shown first (WebP optimized for instant loading)
 import kashi1 from '@/assets/SliderImagess/DSC_4148.webp';
 import kashi2 from '@/assets/SliderImagess/DSC_4365.webp';
+import exhibitorImg from '@/assets/grandPashuMela/Exhibitor.png';
 import kashi3 from '@/assets/SliderImagess/DSC_4379.webp';
 import kashi4 from '@/assets/SliderImagess/DSC_4411.webp';
-import kashi5 from '@/assets/SliderImagess/DSC_4599.webp';
+import dineshMOG from '@/assets/grandPashuMela/Dinesh_Moment_of_Glory.webp';
 import kashi6 from '@/assets/SliderImagess/DSC_4665.webp';
+
+// Rangeelo Jaipur photos
 import slide1 from '@/assets/SliderImagess/1 (3).png';
 import slide2 from '@/assets/SliderImagess/2.webp';
 import slide5 from '@/assets/SliderImagess/DEEP8797.JPG.jpeg';
@@ -37,11 +39,7 @@ import slide22 from '@/assets/SliderImagess/xo0ouuzyhhkfleqro0eu.webp';
 import slide23 from '@/assets/SliderImagess/xsrilhpnjhqzt0oiccrk.webp';
 import slide24 from '@/assets/SliderImagess/cattle show jpg.jpeg';
 
-// Import exhibition video clips (10s trimmed clips starting at requested timestamps)
-import websiteRangeeloExhibitor10s from '@/assets/grandPashuMela/Website_rangeelo_exhibitor_10s.mp4';
-import wrapUpExhibitor10s from '@/assets/grandPashuMela/Wrap_up_exhibitor_10s.mp4';
-
-const kashiImages = [kashi1, kashi2, kashi3, kashi4, kashi5, kashi6];
+const kashiImages = [kashi1, kashi2, exhibitorImg, kashi3, kashi4, dineshMOG, kashi6];
 const jaipurImages = [
   slide8, slide10, slide11, slide24,
   slide2, slide7, slide21, slide22,
@@ -49,35 +47,33 @@ const jaipurImages = [
   slide16, slide17, slide18, slide20
 ];
 
-const videoList = [
-  wrapUpExhibitor10s,          // Wrap up Vo clip (1:27 mark, 10s exhibitor clip)
-  websiteRangeeloExhibitor10s, // Website Rangeelo 2.O clip (22s mark, 10s exhibitor clip)
-];
+const heroSlides = [...kashiImages, ...jaipurImages];
 
 // Heading & stats text mapped to each slide source
 const slideHeadings: Record<string, { number?: string; label: string; labelHi?: string }> = {
-  // Rangeelo Kashi 2026 (Shown first - Latest edition stats)
-  [kashi1]: { number: '50,000+', label: 'Farmers &\nVisitors', labelHi: 'किसान एवं\nआगंतुक' },
-  [kashi2]: { number: '₹ 50 Lakh+', label: 'Prize Money\nMilking Competition', labelHi: 'कुल पुरस्कार राशि\nदुग्ध दोहन प्रतियोगिता' },
-  [kashi3]: { number: '21', label: 'Milking Champions\nHonoured', labelHi: 'दुग्ध दोहन विजेता\nसम्मानित' },
-  [kashi4]: { number: '7', label: 'Indigenous & High-Yield\nBreed Categories', labelHi: 'स्वदेशी एवं उन्नत\nनस्ल श्रेणियाँ' },
-  [kashi5]: { number: '500+', label: 'Progressive Farmers\n& Delegates', labelHi: 'प्रगतिशील किसान\nएवं प्रतिनिधि' },
-  [kashi6]: { number: '150+', label: 'Exhibition Stalls\n& Live Zones', labelHi: 'प्रदर्शनी स्टॉल\nएवं लाइव ज़ोन' },
+  // Rangeelo Kashi 2026
+  [exhibitorImg]: { number: '150+', label: 'Exhibitor', labelHi: 'प्रदर्शक' },
+  [kashi3]: { number: '7', label: 'Indigenous Breeds &\nElite Bull Showcase', labelHi: 'स्वदेशी नस्लें एवं\nउत्कृष्ट सांड प्रदर्शन' },
+  [kashi4]: { number: '₹ 20,000', label: 'NDS Merit Awards &\nStudent Scholarship', labelHi: 'एनडीएस मेरिट अवार्ड्स एवं\nविद्यार्थी छात्रवृत्ति सम्मान' },
+  [dineshMOG]: { number: '34.62 Kg', label: 'Milking Champion\n1st Prize Winner', labelHi: 'दुग्ध दोहन चैंपियन\nप्रथम पुरस्कार विजेता' },
+  [kashi6]: { number: '10+', label: 'Dhol & Cultural Folk\nDance Performances', labelHi: 'ढोल एवं सांस्कृतिक\nलोक नृत्य प्रस्तुतियाँ' },
 
-  // Exhibition Videos (10s exhibitor clips)
-  [wrapUpExhibitor10s]: { number: '150+', label: 'Exhibitors', labelHi: 'प्रदर्शक' },
-  [websiteRangeeloExhibitor10s]: { number: '150+', label: 'Exhibitors', labelHi: 'प्रदर्शक' },
-
-  // Rangeelo Jaipur
-  [slide8]: { number: '10+', label: 'Cultural & Folk\nPerformances', labelHi: 'सांस्कृतिक एवं लोक कला\nप्रदर्शन' },
-  [slide10]: { label: 'Progressive Farmer\nInteractions', labelHi: 'प्रगतिशील किसान\nसंवाद' },
+  // Rangeelo Jaipur (Visually matched to each slide image - Unchanged)
+  [slide8]: { number: '10+', label: 'Cultural & Folk\nPerformances', labelHi: 'सांस्कृतिक एवं लोक कला\nप्रस्तुतियाँ' },
+  [slide10]: { label: 'Progressive Farmer\nInteractions', labelHi: 'प्रगतिशील किसान\nसंवाद सत्र' },
   [slide11]: { number: '50,000+', label: 'Visitors\n(Farmers & Students)', labelHi: 'आगंतुक\n(किसान एवं छात्र)' },
-  [slide24]: { number: '7+', label: 'High Genetic\nMerit Breeds', labelHi: 'उच्च आनुवंशिक\nयोग्यता वाली नस्लें' },
-  [slide22]: { number: '500+', label: 'Delegates', labelHi: 'प्रतिनिधि' },
-  [slide2]: { number: '150+', label: 'Pashu Mela\nParticipants', labelHi: 'पशु मेला\nप्रतिभागी' },
+  [slide24]: { number: '8', label: 'High Genetic\nMerit Breeds', labelHi: 'उच्च आनुवंशिक\nयोग्यता वाली नस्लें' },
   [slide7]: { number: '150+', label: 'Pashu Mela\nParticipants', labelHi: 'पशु मेला\nप्रतिभागी' },
-  [slide21]: { number: '50,000+', label: 'Visitors\n(Farmers & Students)', labelHi: 'आगंतुक\n(किसान एवं छात्र)' },
-  [slide23]: { label: 'Live Demonstration\nZones', labelHi: 'लाइव प्रदर्शन\nज़ोन' },
+  [slide21]: { number: '50,000+', label: 'Dairy Farmers\n& Visitors', labelHi: 'डेयरी किसान\nएवं आगंतुक' },
+  [slide22]: { number: '500+', label: 'Dignitaries &\nDairy Leaders', labelHi: 'विशिष्ट अतिथि एवं\nडेयरी नेतृत्व' },
+  [slide23]: { label: 'Live Machinery &\nTechnology Demo', labelHi: 'लाइव कृषि यंत्र एवं\nतकनीकी प्रदर्शन' },
+  [slide1]: { label: 'Felicitation of\nDistinguished Guests', labelHi: 'विशिष्ट अतिथियों का\nअभिनंदन एवं सम्मान' },
+  [slide5]: { number: '₹ 50 Lakh+', label: 'Prize Money &\nMerit Awards', labelHi: 'कुल पुरस्कार राशि\nएवं मेरिट सम्मान' },
+  [slide15]: { number: '24', label: 'Milking Champions\nHonoured', labelHi: 'दुग्ध दोहन विजेता\nसम्मानित' },
+  [slide16]: { label: "Welcome to India's\nLargest Pashu Mela", labelHi: 'भारत के भव्य\nपशु मेले में सुस्वागतम्' },
+  [slide17]: { number: '500+', label: 'Delegates &\nIndustry Experts', labelHi: 'डेलीगेट्स एवं\nडेयरी विशेषज्ञ' },
+  [slide18]: { number: '150+', label: 'Exhibition Stalls\n& Live Zones', labelHi: 'प्रदर्शनी स्टॉल\nएवं लाइव ज़ोन' },
+  [slide20]: { label: 'Recognition of\nDairy Pioneers', labelHi: 'डेयरी नवाचार एवं\nप्रगतिशील किसान सम्मान' },
 };
 
 // Count-up component for hero slide numbers
@@ -114,250 +110,60 @@ function SlideCountUp({ value, animKey }: { value: string; animKey: number }) {
   return <>{prefix}{fmt(display)}{suffix ? ` ${suffix}` : ''}</>;
 }
 
-type SlideItem =
-  | { type: 'image'; src: string }
-  | { type: 'video'; src: string };
-
-function buildMixedSlides(): SlideItem[] {
-  const slides: SlideItem[] = [];
-
-  // 1. All Kashi images first (as requested)
-  kashiImages.forEach((src) => {
-    slides.push({ type: 'image', src });
-  });
-
-  // 2. First 10s exhibitor video clip right after Kashi images
-  if (videoList[0]) {
-    slides.push({ type: 'video', src: videoList[0] });
-  }
-
-  // 3. Jaipur images interleaved with the second 10s exhibitor video clip
-  let vIndex = 1;
-  for (let i = 0; i < jaipurImages.length; i++) {
-    slides.push({ type: 'image', src: jaipurImages[i] });
-    if ((i + 1) % 4 === 0 && vIndex < videoList.length) {
-      slides.push({ type: 'video', src: videoList[vIndex] });
-      vIndex++;
-    }
-  }
-
-  return slides;
-}
-
-const mixedSlides = buildMixedSlides();
-
-const IMAGE_SLIDE_DURATION_MS = 4000;
-
 const HeroSection = () => {
   const { t, language } = useLanguage();
   const swiperRef = useRef<SwiperType | null>(null);
-
-  // --- Custom "one clock" advance engine (replaces Swiper's Autoplay module) ---
-  const advanceTimerRef = useRef<number | null>(null); // setTimeout id for image slides
-  const remainingMsRef = useRef<number>(IMAGE_SLIDE_DURATION_MS); // used for accurate pause/resume
-  const timerStartedAtRef = useRef<number>(0);
-
-  const [isPaused, setIsPaused] = useState(false);
-  const isPausedRef = useRef(isPaused);
-  useEffect(() => {
-    isPausedRef.current = isPaused;
-  }, [isPaused]);
-
-  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
-  const [activeIsVideo, setActiveIsVideo] = useState(false);
-  const [activeHeading, setActiveHeading] = useState<{ number?: string; label: string; labelHi?: string } | null>(null);
+  const [activeHeading, setActiveHeading] = useState<{ number?: string; label: string; labelHi?: string } | null>(
+    () => slideHeadings[heroSlides[0]] || null
+  );
   const [headingKey, setHeadingKey] = useState(0);
 
-  // Detect header visibility by checking its CSS classes directly (unchanged)
+  // Preload all slider images on mount
   useEffect(() => {
-    const checkHeaderVisibility = () => {
-      const header = document.querySelector('header');
-      if (header) {
-        const classes = header.className;
-        const isHidden = classes.includes('opacity-0') || classes.includes('-translate-y-full');
-        setIsHeaderVisible(!isHidden);
-      }
-    };
-
-    const header = document.querySelector('header');
-    if (header) {
-      const observer = new MutationObserver(checkHeaderVisibility);
-      observer.observe(header, { attributes: true, attributeFilter: ['class'] });
-      header.addEventListener('transitionend', checkHeaderVisibility);
-      checkHeaderVisibility();
-      return () => {
-        observer.disconnect();
-        header.removeEventListener('transitionend', checkHeaderVisibility);
-      };
-    }
-  }, []);
-
-  const clearAdvanceTimer = useCallback(() => {
-    if (advanceTimerRef.current !== null) {
-      window.clearTimeout(advanceTimerRef.current);
-      advanceTimerRef.current = null;
-    }
-  }, []);
-
-  // Preload all slider images on mount to eliminate blank screen when transitioning
-  useEffect(() => {
-    [...kashiImages, ...jaipurImages].forEach((src) => {
+    heroSlides.forEach((src) => {
       const img = new Image();
       img.src = src;
     });
   }, []);
-  
-  // Pauses other videos and strips stale listeners without wiping decoded frames
-  const pauseAllVideos = useCallback(() => {
-    const swiper = swiperRef.current;
-    const swiperEl = swiper?.el;
-    if (!swiperEl) return;
-    const activeSlideEl = swiper?.slides?.[swiper?.activeIndex];
-    const currentVideo = activeSlideEl?.querySelector('video');
 
-    swiperEl.querySelectorAll('video').forEach((v: HTMLVideoElement) => {
-      if (v !== currentVideo) {
-        v.pause();
-        v.onended = null;
-      }
-    });
+  const handleSlideChange = useCallback((swiper: SwiperType) => {
+    const currentImg = heroSlides[swiper.realIndex];
+    setActiveHeading(slideHeadings[currentImg] || null);
+    setHeadingKey((prev) => prev + 1);
   }, []);
 
-  // Starts (or restarts) the image auto-advance timer for a given duration.
-  const scheduleImageAdvance = useCallback((durationMs: number) => {
-    clearAdvanceTimer();
-    remainingMsRef.current = durationMs;
-    timerStartedAtRef.current = Date.now();
-    advanceTimerRef.current = window.setTimeout(() => {
-      remainingMsRef.current = 0;
-      swiperRef.current?.slideNext();
-    }, durationMs);
-  }, [clearAdvanceTimer]);
-
-  // Single source of truth: decide how the *current* active slide should advance.
-  const advanceActiveSlide = useCallback(() => {
-    const swiper = swiperRef.current;
-    if (!swiper) return;
-
-    clearAdvanceTimer();
-    const currentSlide = mixedSlides[swiper.realIndex];
-    if (!currentSlide) return;
-
-    // Update heading for this slide
-    const heading = slideHeadings[currentSlide.src] || null;
-    setActiveHeading(heading);
-    setHeadingKey((prev) => prev + 1);
-
-    if (currentSlide.type === 'video') {
-      setActiveIsVideo(true);
-
-      // With loop=true, Swiper renders duplicated slide nodes, so we must read
-      // the DOM element via activeIndex (not realIndex) to get the real <video>.
-      const activeSlideEl = swiper.slides[swiper.activeIndex];
-      const videoEl = activeSlideEl?.querySelector('video') as HTMLVideoElement | null;
-      if (!videoEl) return;
-
-      if (videoEl.currentTime > 0.5 && !videoEl.paused) {
-        videoEl.currentTime = 0;
-      }
-      videoEl.onended = () => {
-        swiper.slideNext();
-      };
-
-      if (!isPausedRef.current) {
-        const playPromise = videoEl.play();
-        if (playPromise !== undefined) {
-          playPromise.catch((err) => {
-            console.warn('Video autoplay prevented', err);
-            // Autoplay blocked by the browser — advance gracefully after 5s instead of instant blank skip
-            if (!isPausedRef.current) {
-              scheduleImageAdvance(5000);
-            }
-          });
-        }
-      }
-    } else {
-      setActiveIsVideo(false);
-      if (!isPausedRef.current) {
-        scheduleImageAdvance(IMAGE_SLIDE_DURATION_MS);
-      } else {
-        remainingMsRef.current = IMAGE_SLIDE_DURATION_MS;
-      }
-    }
-  }, [clearAdvanceTimer, scheduleImageAdvance]);
-
-  const handleSlideChange = useCallback(() => {
-    pauseAllVideos();
-    advanceActiveSlide();
-  }, [pauseAllVideos, advanceActiveSlide]);
-
-  const handleSwiperInit = useCallback((swiper: SwiperType) => {
-    swiperRef.current = swiper;
-    advanceActiveSlide(); // kick off the first slide's timer/video manually
-  }, [advanceActiveSlide]);
-
-  // Spacebar to toggle pause/play — pauses the video OR the image timer, precisely.
+  // Spacebar to pause/resume swiper autoplay
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.code !== 'Space' || e.target !== document.body) return;
     e.preventDefault();
-
     const swiper = swiperRef.current;
     if (!swiper) return;
-
-    const currentSlide = mixedSlides[swiper.realIndex];
-    const activeSlideEl = swiper.slides[swiper.activeIndex];
-    const videoEl = activeSlideEl?.querySelector('video') as HTMLVideoElement | null;
-
-    setIsPaused((prev) => {
-      const next = !prev;
-      isPausedRef.current = next;
-
-      if (next) {
-        // --- pausing ---
-        if (currentSlide?.type === 'video') {
-          videoEl?.pause();
-        } else if (advanceTimerRef.current !== null) {
-          const elapsed = Date.now() - timerStartedAtRef.current;
-          remainingMsRef.current = Math.max(remainingMsRef.current - elapsed, 0);
-          clearAdvanceTimer();
-        }
-      } else {
-        // --- resuming ---
-        if (currentSlide?.type === 'video') {
-          videoEl?.play();
-        } else {
-          scheduleImageAdvance(
-            remainingMsRef.current > 0 ? remainingMsRef.current : IMAGE_SLIDE_DURATION_MS
-          );
-        }
-      }
-      return next;
-    });
-  }, [clearAdvanceTimer, scheduleImageAdvance]);
+    if (swiper.autoplay.running) {
+      swiper.autoplay.stop();
+    } else {
+      swiper.autoplay.start();
+    }
+  }, []);
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [handleKeyDown]);
 
-  // Cleanup on unmount: kill any pending timer, stop any playing video.
-  useEffect(() => {
-    return () => {
-      clearAdvanceTimer();
-      pauseAllVideos();
-    };
-  }, [clearAdvanceTimer, pauseAllVideos]);
-
   return (
     <section id="hero" className="hero-slider-section relative min-h-screen flex items-end overflow-hidden bg-black">
       {/* Fullscreen Swiper Background */}
       <div className="absolute inset-0 z-0 bg-black">
         <Swiper
-          modules={[EffectFade, Navigation, Pagination]}
+          modules={[EffectFade, Navigation, Pagination, Autoplay]}
           effect="fade"
           fadeEffect={{ crossFade: true }}
           loop={true}
           speed={1000}
+          autoplay={{
+            delay: 4000,
+            disableOnInteraction: false,
+          }}
           pagination={{
             clickable: true,
             el: '.hero-pagination',
@@ -368,40 +174,28 @@ const HeroSection = () => {
             prevEl: '.hero-arrow-prev',
             nextEl: '.hero-arrow-next',
           }}
-          onSwiper={handleSwiperInit}
+          onSwiper={(swiper) => {
+            swiperRef.current = swiper;
+          }}
           onSlideChange={handleSlideChange}
           className="w-full h-full"
-          allowTouchMove={false}
+          allowTouchMove={true}
         >
-          {mixedSlides.map((slide, index) => (
+          {heroSlides.map((src, index) => (
             <SwiperSlide key={index} className="w-full h-full bg-black">
-              {slide.type === 'image' ? (
-                <div className="w-full h-full bg-black">
-                  <img
-                    src={slide.src}
-                    alt={`Rangeelo Event ${index + 1}`}
-                    className="w-full h-full object-cover"
-                    loading="eager"
-                    decoding="async"
-                  />
-                </div>
-              ) : (
-                <div className="w-full h-full bg-black">
-                  <video
-                    src={slide.src}
-                    muted
-                    playsInline
-                    preload="auto"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              )}
+              <div className="w-full h-full bg-black">
+                <img
+                  src={src}
+                  alt={`Rangeelo Event ${index + 1}`}
+                  className="w-full h-full object-cover"
+                  loading={index < 2 ? 'eager' : 'lazy'}
+                  decoding="async"
+                />
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
-
-      {/* Removed gradient overlays so image/video is 100% visible */}
 
       {/* Slide Heading Overlay — Top Right */}
       {activeHeading && (
@@ -444,29 +238,16 @@ const HeroSection = () => {
         <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white" />
       </button>
 
-      {/* Tagline */}
+      {/* Tagline commented out as requested */}
+      {/*
       <div className="relative z-10 w-full pb-5 md:pb-5">
         <div className="hero-tagline-banner inline-flex items-center pl-1 pr-1 md:pl-1 md:pr-2 lg:pl-3 lg:pr-2 py-1 md:py-2">
-          {/* Commented out as requested: "comment out this (image 1) Book Stall or jo bhi likha hh." */}
-          {/* {activeIsVideo ? (
-            <div className="flex flex-col gap-1 md:gap-2 animate-fade-up">
-              <h1 className="text-base md:text-xl lg:text-2xl font-extrabold tracking-tight drop-shadow-lg leading-snug" style={{ color: '#dd984a' }}>
-                Asia's Largest Celebration of Farmers, Livestock & Rural Prosperity
-              </h1>
-              <Link
-                to="/register?type=exhibitor"
-                className="inline-block self-start bg-gradient-to-r from-amber-500 to-orange-600 text-white font-bold text-sm md:text-lg px-5 py-1.5 md:px-6 md:py-2 rounded-full shadow-lg tracking-wide uppercase cursor-pointer hover:scale-105 transition-transform duration-300"
-              >
-                Book a Stall
-              </Link>
-            </div>
-          ) : ( */}
-            <h1 className="text-lg md:text-2xl lg:text-3xl font-extrabold animate-fade-up tracking-tight whitespace-nowrap drop-shadow-lg" style={{ color: '#dd984a' }}>
-              {t('hero.tagline')}
-            </h1>
-          {/* )} */}
+          <h1 className="text-lg md:text-2xl lg:text-3xl font-extrabold animate-fade-up tracking-tight whitespace-nowrap drop-shadow-lg" style={{ color: '#dd984a' }}>
+            {t('hero.tagline')}
+          </h1>
         </div>
       </div>
+      */}
 
       <div className="hero-pagination absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2" />
 

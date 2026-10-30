@@ -101,8 +101,8 @@ export const HeroSection = () => {
             <br />
             <span className="text-[#D97706]">
               {isJaipur
-                ? (language === 'hi' ? 'दुग्ध दोहन प्रतियोगिता जयपुर 2026' : 'Milking Competition Jaipur 2026')
-                : (language === 'hi' ? 'दुग्ध दोहन प्रतियोगिता काशी 2026' : 'Milking Competition Kashi 2026')}
+                ? (language === 'hi' ? 'दुग्ध दोहन प्रतियोगिता रंगीलो जयपुर 2026' : 'Milking Competition Rangeelo Jaipur 2026')
+                : (language === 'hi' ? 'दुग्ध दोहन प्रतियोगिता रंगीलो काशी 2026' : 'Milking Competition Rangeelo Kashi 2026')}
             </span>
           </h1>
           <p className="text-xl md:text-2xl text-[#3A2A1F]/80 max-w-3xl mx-auto mb-12 font-medium">
@@ -124,9 +124,9 @@ export const HeroSection = () => {
           }}
         >
           {[
-            { label: language === 'hi' ? 'विजेता' : 'Winners', target: 21, decimals: 0, prefix: "", suffix: "", icon: Users },
-            { label: language === 'hi' ? 'नस्लें' : 'Breeds', target: 7, decimals: 0, prefix: "", suffix: "", icon: Award },
-            { label: language === 'hi' ? 'रिकॉर्ड दूध उपज' : 'Record Milk Yield', target: 34.62, decimals: 2, prefix: "", suffix: language === 'hi' ? ' किग्रा' : ' Kg', icon: TrendingUp },
+            { label: language === 'hi' ? 'विजेता' : 'Winners', target: isJaipur ? 24 : 21, decimals: 0, prefix: "", suffix: "", icon: Users },
+            { label: language === 'hi' ? 'नस्लें' : 'Breeds', target: isJaipur ? 8 : 7, decimals: 0, prefix: "", suffix: "", icon: Award },
+            { label: language === 'hi' ? 'रिकॉर्ड दूध उपज' : 'Record Milk Yield', target: isJaipur ? 64.44 : 34.62, decimals: 2, prefix: "", suffix: language === 'hi' ? ' किग्रा' : ' Kg', icon: TrendingUp },
             { label: language === 'hi' ? 'पुरस्कार भुगतान' : 'Award Payouts', target: 50, decimals: 0, prefix: "₹ ", suffix: language === 'hi' ? ' लाख +' : ' Lakh +', icon: Trophy },
           ].map((stat, i) => (
             <motion.div 

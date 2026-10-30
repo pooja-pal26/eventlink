@@ -64,11 +64,16 @@ export const BreedShowcase = () => {
                 />
               )}
               {language === 'hi' ? (
+                breed.id === 'hf' ? 'HF (होल्स्टीन फ्रिसियन)' :
+                breed.id === 'crossbreed' ? 'क्रॉस ब्रीड' :
+                breed.id === 'gir' ? 'गिर' :
+                breed.id === 'jersey' ? 'जर्सी' :
+                breed.id === 'murrah' ? 'मुर्रा' :
+                breed.id === 'rathi' ? 'राठी' :
+                breed.id === 'sahiwal' ? 'साहीवाल' :
+                breed.id === 'tharparkar' ? 'थारपारकर' :
                 breed.id === 'buffalo' ? 'भैंस' :
                 breed.id === 'gangatiri' ? 'गंगातीरी' :
-                breed.id === 'sahiwal' ? 'साहीवाल' :
-                breed.id === 'gir' ? 'गिर' :
-                breed.id === 'tharparkar' ? 'थारपारकर' :
                 breed.id === 'hfcb' || breed.id === 'hycb' ? 'HFCB' :
                 breed.id === 'jycb' ? 'JYCB' : breed.name
               ) : (breed.id === 'hfcb' || breed.id === 'hycb' ? 'HFCB' : breed.name)}
@@ -93,11 +98,31 @@ export const BreedShowcase = () => {
               ))}
 
               {/* 2nd and 3rd Place Cards */}
-              <div className="grid md:grid-cols-2 gap-8 mt-8">
-                {activeBreed.winners.filter(w => w.rank !== 1).map((winner) => (
-                  <WinnerCard key={winner.rank} winner={winner} isFirst={false} activeBreedId={activeBreed.id} isJaipur={isJaipur} />
-                ))}
-              </div>
+              {activeBreed.winners.filter(w => w.rank !== 1).length === 1 ? (
+                activeBreed.winners.filter(w => w.rank !== 1).map((winner) => (
+                  <WinnerCard 
+                    key={winner.rank} 
+                    winner={winner} 
+                    isFirst={false} 
+                    isRow={true} 
+                    activeBreedId={activeBreed.id} 
+                    isJaipur={isJaipur} 
+                  />
+                ))
+              ) : activeBreed.winners.filter(w => w.rank !== 1).length > 1 ? (
+                <div className="grid md:grid-cols-2 gap-8 mt-8">
+                  {activeBreed.winners.filter(w => w.rank !== 1).map((winner) => (
+                    <WinnerCard 
+                      key={winner.rank} 
+                      winner={winner} 
+                      isFirst={false} 
+                      isRow={false} 
+                      activeBreedId={activeBreed.id} 
+                      isJaipur={isJaipur} 
+                    />
+                  ))}
+                </div>
+              ) : null}
 
               {/* Achievement Timeline */}
               {/* <AchievementTimeline winners={activeBreed.winners} breedName={activeBreed.name} /> */}
@@ -111,7 +136,7 @@ export const BreedShowcase = () => {
   );
 };
 
-const WinnerCard = ({ winner, isFirst, activeBreedId, isJaipur }: { winner: Winner, isFirst: boolean, activeBreedId: string, isJaipur: boolean }) => {
+const WinnerCard = ({ winner, isFirst, isRow = false, activeBreedId, isJaipur }: { winner: Winner, isFirst: boolean, isRow?: boolean, activeBreedId: string, isJaipur: boolean }) => {
   const { language } = useLanguage();
   const transMap = isJaipur ? jaipurHiTranslations : kashiHiTranslations;
   const transKey = activeBreedId === 'hycb' ? 'hfcb' : activeBreedId;
@@ -122,9 +147,11 @@ const WinnerCard = ({ winner, isFirst, activeBreedId, isJaipur }: { winner: Winn
   const yieldText = language === 'hi' && trans ? trans.yieldHi : winner.yield;
   const description = language === 'hi' && trans ? trans.descriptionHi : winner.description;
 
+  const isRowLayout = isFirst || isRow;
+
   return (
-    <div className={`flex flex-col ${isFirst ? 'lg:flex-row' : ''} bg-[#F8F5F0] rounded-3xl overflow-hidden shadow-xl border border-[#D4AF37]/30 hover:shadow-2xl transition-shadow group relative`}>
-      <div className={`relative overflow-hidden bg-[#3A2A1F]/5 flex items-center justify-center ${isFirst ? 'lg:w-1/2 min-h-[320px]' : 'aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/3]'}`}>
+    <div className={`flex flex-col ${isRowLayout ? 'lg:flex-row' : ''} bg-[#F8F5F0] rounded-3xl overflow-hidden shadow-xl border border-[#D4AF37]/30 hover:shadow-2xl transition-shadow group relative`}>
+      <div className={`relative overflow-hidden bg-[#3A2A1F]/5 flex items-center justify-center ${isRowLayout ? 'lg:w-1/2 min-h-[320px]' : 'aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/3]'}`}>
         {winner.video ? (
           <video
             src={winner.video}
@@ -160,7 +187,7 @@ const WinnerCard = ({ winner, isFirst, activeBreedId, isJaipur }: { winner: Winn
         </div>
       </div>
       
-      <div className={`p-8 ${isFirst ? 'lg:w-1/2 flex flex-col justify-center' : ''} relative`}>
+      <div className={`p-8 ${isRowLayout ? 'lg:w-1/2 flex flex-col justify-center' : ''} relative`}>
         {/* Decorative background element */}
         <Award className="absolute right-4 top-4 w-24 h-24 text-[#D4AF37]/10 -rotate-12" />
         

@@ -59,6 +59,10 @@ import PrahladSinghMOG from '@/assets/grandPashuMela/Prahlad_Singh_MOG.webp';
 import GorakhnathYadavMOG from '@/assets/grandPashuMela/Gorakhnath_Yadav_MOG.webp';
 import HarimohanYadavMOG from '@/assets/grandPashuMela/Harimohan_Yadav_MOG.webp';
 
+// Tharparkar (Kashi)
+import PriyanshuMOG from '@/assets/grandPashuMela/Priyanshu_MOG.webp';
+import RandeepMOG from '@/assets/grandPashuMela/Randeep_MOG.webp';
+
 export type Winner = {
   rank: number;
   farmerName: string;
@@ -99,8 +103,7 @@ export const kashiPashuMelaData: BreedCategory[] = [
         location: 'Ghazipur, Uttar Pradesh',
         yield: '30.50 Kg',
         image: AbhishekStage,
-        description: 'Recognising another impressive performance at Rangeelo Kashi 2026!\n\nCongratulations to Shri Abhishek Pandey from Ghazipur, Uttar Pradesh for securing 2nd Prize in the HFCB Category of the Milking Competition with a 24-hour milk yield of 30.50 kg.\n\n#Rangeelo2026 #MilkingCompetition #DairyProductivity #HFCB #ProgressiveDairying #DairyFarmers #NDSRangeeloKashi',
-        quote: 'Recognising another impressive performance at Rangeelo Kashi 2026!'
+        description: 'Recognising another impressive performance at Rangeelo Kashi 2026!\n\nCongratulations to Shri Abhishek Pandey from Ghazipur, Uttar Pradesh for securing 2nd Prize in the HFCB Category of the Milking Competition with a 24-hour milk yield of 30.50 kg.\n\n#Rangeelo2026 #MilkingCompetition #DairyProductivity #HFCB #ProgressiveDairying #DairyFarmers #NDSRangeeloKashi'
       },
       {
         rank: 3,
@@ -108,8 +111,7 @@ export const kashiPashuMelaData: BreedCategory[] = [
         location: 'Uttar Pradesh',
         yield: '28.24 Kg',
         image: VishalStage,
-        description: 'A commendable achievement at Rangeelo Kashi 2026!\n\nCongratulations to Shri Vishal Yadav for securing 3rd Prize in the HFCB Category of the Milking Competition, recording a 24-hour milk yield of 28.24 kg.\n\nConsistent animal care and disciplined farm management are key to sustaining productivity and achieving better results.\n\n#Rangeelo2026 #MilkingCompetition #DairyProductivity #HFCB #ProgressiveDairying #DairyFarmers #NDSRangeeloKashi',
-        quote: 'A commendable achievement at Rangeelo Kashi 2026!'
+        description: 'A commendable achievement at Rangeelo Kashi 2026!\n\nCongratulations to Shri Vishal Yadav for securing 3rd Prize in the HFCB Category of the Milking Competition, recording a 24-hour milk yield of 28.24 kg.\n\nConsistent animal care and disciplined farm management are key to sustaining productivity and achieving better results.\n\n#Rangeelo2026 #MilkingCompetition #DairyProductivity #HFCB #ProgressiveDairying #DairyFarmers #NDSRangeeloKashi'
       }
     ]
   },
@@ -243,29 +245,20 @@ export const kashiPashuMelaData: BreedCategory[] = [
     winners: [
       {
         rank: 1,
-        farmerName: 'Shri Balveer Karesiya',
-        location: 'Jaitaran, Rajasthan',
-        yield: '13.30 Kg',
-        image: Tharparkar1st,
-        description: 'At Rangeelo Kashi 2026 – Milking Competition, adaptability and productivity were clearly visible.\n\nIn the Tharparkar category, the winning cow recorded 13.30 Kg total milk yield in 24 hours.\n\nCongratulations to Shri Balveer Karesiya (Jaitaran, Rajasthan) for securing 1st Prize and highlighting the strength of Tharparkar cattle.\n\n#Rangeelo2026 #MilkingCompetition #DairyExcellence #Tharparkar #ProgressiveDairying #Indigenous #Cow #Breed #DairyFarmer #Farmer #NDSRangeeloKashi',
+        farmerName: 'Shri Priyanshu Rathi',
+        location: 'Haryana',
+        yield: '15.92 Kg',
+        image: PriyanshuMOG,
+        description: 'At Rangeelo Kashi 2026 – Milking Competition, adaptability and productivity were clearly visible.\n\nIn the Tharparkar category, the winning cow recorded 15.92 Kg total milk yield in 24 hours.\n\nCongratulations to Shri Priyanshu Rathi for securing 1st Prize and highlighting the strength of Tharparkar cattle.\n\n#Rangeelo2026 #MilkingCompetition #DairyExcellence #Tharparkar\n#ProgressiveDairying #Indigenous #Cow #Breed #DairyFarmer #Farmer #NDSRangeeloKashi',
         quote: 'Showcasing adaptability and sustainable yield in Tharparkar dairying.'
       },
       {
         rank: 2,
-        farmerName: 'Shri Harshit Jhuriya ji',
-        location: 'Sikar, Rajasthan',
-        yield: '12.88 Kg',
-        image: Tharparkar2ndimage,
-        video: Tharparkar2ndVideo,
-        description: 'Shri Harshit Jhuriya ji, Sikar, secured 2nd place in the Tharparkar category at Rangeelo 2026 with 12.88 Kg total yield.\n\nCareful attention and steady routine helped achieve this proud milestone.\n\n#Rangeelo2026 #MilkingCompetition #DairyExcellence #Tharparkar #ProgressiveDairying #Indigenous #Cow #Breed #DairyFarmer #Farmer #NDSRangeeloKashi'
-      },
-      {
-        rank: 3,
-        farmerName: 'Shri Udaypal ji',
-        location: 'Rajasthan',
-        yield: '9.50 Kg',
-        image: Tharparkar3rd,
-        description: 'Securing 3rd Prize in the Tharparkar category, Shri Udaypal ji recorded 9.50 kg in 24 hours.\n\nStrong discipline in milking routine and feeding has clearly paid off.\n\n#Rangeelo2026 #MilkingCompetition #DairyExcellence #Tharparkar #ProgressiveDairying #Indigenous #Cow #Breed #DairyFarmer #Farmer #NDSRangeeloKashi'
+        farmerName: 'Shri Randeep Chaudhary',
+        location: 'Haryana',
+        yield: '10.80 Kg',
+        image: RandeepMOG,
+        description: 'Shri Randeep Chaudhary, secured 2nd place in the Tharparkar category at Rangeelo 2026 with 10.80 Kg total yield.\n\nCareful attention and steady routine helped achieve this proud milestone.\n\n#Rangeelo2026 #MilkingCompetition #DairyExcellence #Tharparkar\n#ProgressiveDairying #Indigenous #Cow #Breed #DairyFarmer #Farmer #NDSRangeeloKashi'
       }
     ]
   },
@@ -307,95 +300,64 @@ export const kashiPashuMelaData: BreedCategory[] = [
 // ==========================================
 export const jaipurPashuMelaData: BreedCategory[] = [
   {
-    id: 'buffalo',
-    name: 'Buffalo',
+    id: 'hf',
+    name: 'HF (Holstein Friesian)',
     winners: [
       {
         rank: 1,
-        farmerName: 'Shri Basant',
-        location: 'Bhiwani, Haryana',
-        yield: '26.94 Kg',
-        image: DEEP0197,
-        description: "Murrah Buffalo Milking Record: 26.94 kg in 24 Hours\n\nAt Rangeelo 2026, Shri Basant from Bhiwani, Haryana claimed 1st Prize as his Murrah buffalo recorded an extraordinary daily milk yield. 🥇🐃\n\nThis achievement reflects how disciplined farm practices and proper scientific rearing can enhance milk production, reinforcing the breed's popularity as 'black gold' among dairy farmers.",
-        quote: "Murrah Buffalo Milking Record: 26.94 kg in 24 Hours"
+        farmerName: 'Shri Pawan',
+        location: 'Hisar, Haryana',
+        yield: '64.44 Kg',
+        image: DEEP0198,
+        description: 'At Rangeelo 2026 – Milking Competition, an extraordinary milestone was recorded in the HF (Holstein Friesian) category as the winning cow produced 64.44 Kg of milk in 24 hours.\n\nHeartiest congratulations to Shri Pawan from Hisar, Haryana for winning 1st Prize and setting a benchmark in dairy productivity.\n\n#Rangeelo2026 #MilkingCompetition #DairyProductivity #HF #HolsteinFriesian #ProgressiveDairying #DairyFarmers',
+        quote: 'Setting a pan-India dairy benchmark with 64.44 Kg milk in 24 hours.'
       },
       {
         rank: 2,
-        farmerName: 'Shri Amandeep ji & Vedpal ji',
-        location: 'Kakarod, Jind (Haryana)',
-        yield: '20.76 Kg',
-        image: DEEP0192,
-        description: 'In the Buffalo category, the buffalo of Shri Amandeep ji & Vedpal ji, Kakarod, Jind (Haryana), earned 2nd position at Rangeelo 2026 with a solid 20.76 Kg in 24 hours.\n\nBehind this performance is a story of disciplined management and top-tier husbandry.'
+        farmerName: 'Shri Jagdish ji',
+        location: 'Hisar, Haryana',
+        yield: '61.34 Kg',
+        image: DEEP0164,
+        description: 'Congratulations to Shri Jagdish ji from Hisar, Haryana for securing 2nd place in the HF category with an impressive 61.34 Kg in 24 hours.\n\n#Rangeelo2026 #MilkingCompetition #DairyProductivity #HF #ProgressiveDairying #DairyFarmers'
       },
       {
         rank: 3,
-        farmerName: 'Shri Yashveer ji',
-        location: 'Jind',
-        yield: '20.30 Kg',
-        image: DEEP0186,
-        description: 'Shri Yashveer ji (Jind) earned 3rd Prize in the Buffalo category with 20.30 kg in 24 hours.\n\nSolid management leads to solid results. Keep building on this success and watch your herd reach its peak in superior genetics.'
+        farmerName: 'Shri Jagdish Kumar ji',
+        location: 'Hisar, Haryana',
+        yield: '58.94 Kg',
+        image: DEEP0171,
+        description: 'Securing 3rd Prize in the HF category, Shri Jagdish Kumar ji (Hisar, Haryana) recorded an outstanding 58.94 kg in 24 hours.\n\n#Rangeelo2026 #MilkingCompetition #DairyProductivity #HF #ProgressiveDairying #DairyFarmers'
       }
     ]
   },
   {
-    id: 'gangatiri',
-    name: 'Gangatiri',
+    id: 'crossbreed',
+    name: 'Cross Breed',
     winners: [
       {
         rank: 1,
-        farmerName: 'Shri Dinesh Gurjar',
+        farmerName: 'Shri Tara Chand',
         location: 'Ajmer, Rajasthan',
-        yield: '18.58 Kg',
+        yield: '49.10 Kg',
+        image: crossbreed3,
+        description: 'Excellence and dedication at Rangeelo 2026! Heartiest congratulations to Shri Tara Chand from Ajmer for securing 1st Prize in the Cross Breed category with 49.10 Kg milk yield in 24 hours.\n\n#Rangeelo2026 #MilkingCompetition #DairyProductivity #CrossBreed #ProgressiveDairying #DairyFarmers',
+        quote: 'Excellence in Cross Breed dairying with 49.10 Kg yield.'
+      },
+      {
+        rank: 2,
+        farmerName: 'Shri Ram Lal ji',
+        location: 'Kayad, Ajmer',
+        yield: '22.52 Kg',
         image: BSP_9846,
-        description: 'At Rangeelo 2026 – Milking Competition, native breed excellence was on full display.\n\nIn the Gangatiri Category, an exceptional benchmark was established with 18.58 Kg total milk yield in 24 hours.\n\nHeartiest congratulations to Shri Dinesh Gurjar for winning 1st Prize and demonstrating the tremendous dairy potential of the Gangatiri breed.',
-        quote: 'Native breed excellence with an 18.58 Kg record.'
-      },
-      {
-        rank: 2,
-        farmerName: 'Shri Ramesh Chandra Yadav',
-        location: 'Kashi, Uttar Pradesh',
-        yield: '16.40 Kg',
-        image: BSP_9864,
-        description: 'Congratulations to Shri Ramesh Chandra Yadav from Kashi for securing 2nd place in the Gangatiri category with an outstanding 16.40 Kg in 24 hours.\n\nYour dedication to indigenous cattle rearing and balanced nutrition is truly commendable.'
+        description: 'Congratulations to Shri Ram Lal ji from Kayad, Ajmer for securing 2nd place in the Cross Breed category with 22.52 Kg at Rangeelo 2026.\n\n#Rangeelo2026 #MilkingCompetition #CrossBreed #ProgressiveDairying'
       },
       {
         rank: 3,
-        farmerName: 'Shri Ram Naresh Singh',
-        location: 'Mirzapur, Uttar Pradesh',
-        yield: '15.20 Kg',
-        image: BSP_9882,
-        description: 'Securing 3rd Prize in the Gangatiri category, Shri Ram Naresh Singh (Mirzapur) recorded 15.20 kg in 24 hours.\n\nA great example of consistent herd care and dedication to native indigenous cows.'
-      }
-    ]
-  },
-  {
-    id: 'sahiwal',
-    name: 'Sahiwal',
-    winners: [
-      {
-        rank: 1,
-        farmerName: 'Shri Randeep Choudhary',
-        location: 'Karnal, Haryana',
-        yield: '22.36 Kg',
-        image: Sahiwal1st,
-        description: 'At Rangeelo 2026, the “Gold of India” once again demonstrated its strength in dairy production.\n\nCongratulations to Shri Randeep Choudhary from Karnal, Haryana for securing 1st Prize in the Sahiwal category with a yield of 22.36 kg in 24 hours.\n\nConsistent herd management and disciplined dairy practices remain the foundation behind such performances.',
-        quote: 'The "Gold of India" once again demonstrated its strength.'
-      },
-      {
-        rank: 2,
-        farmerName: 'Shri Naresh Kumar',
-        location: 'Taraori, Karnal (Haryana)',
-        yield: '19.18 Kg',
-        image: Sahiwal2nd,
-        description: 'At the Rangeelo 2026 competition, a Sahiwal cow owned by Shri Naresh Kumar of Taraori, Karnal (Haryana), earned a prestigious 2nd place. The cow produced an impressive 19.18 Kg within a 24-hour period.\n\nA proud showcase of the true strength of the Sahiwal breed, reflecting the rich dairy legacy of the Rajasthan–Haryana region.'
-      },
-      {
-        rank: 3,
-        farmerName: 'Shri Radheshyam Jat ji',
-        location: 'Alwar',
-        yield: '18.96 Kg',
-        image: Sahiwal3rd,
-        description: 'In the Sahiwal category at Rangeelo 2026 Milking Competition, the cow of Shri Radheshyam Jat ji (Alwar) secured 3rd Prize with a total yield of 18.96 kg in 24 hours.\n\nA clear reflection of disciplined milking and balanced feeding. You’ve mastered the basics—now keep refining the details to reach the top tier.'
+        farmerName: 'Shri Shyam Lal ji',
+        location: 'Kayad, Ajmer',
+        yield: '22.40 Kg',
+        image: DEEP0164,
+        description: 'Shri Shyam Lal ji (Kayad, Ajmer) earned 3rd Prize in the Cross Breed category at Rangeelo 2026 with a solid 22.40 Kg in 24 hours.\n\n#Rangeelo2026 #MilkingCompetition #CrossBreed #ProgressiveDairying'
       }
     ]
   },
@@ -431,26 +393,150 @@ export const jaipurPashuMelaData: BreedCategory[] = [
     ]
   },
   {
+    id: 'jersey',
+    name: 'Jersey',
+    winners: [
+      {
+        rank: 1,
+        farmerName: 'Shri Pawan Kumar',
+        location: 'Hisar, Haryana',
+        yield: '36.22 Kg',
+        image: BSP_9907,
+        description: 'At the Rangeelo 2026 Milking Competition, the Jersey category saw remarkable productivity. Congratulations to Shri Pawan Kumar from Hisar, Haryana for winning 1st Prize with an impressive 36.22 kg in 24 hours.\n\n#Rangeelo2026 #MilkingCompetition #JerseyBreed #DairyExcellence #ProgressiveDairying',
+        quote: 'Set a high standard for productivity in Jersey category.'
+      },
+      {
+        rank: 2,
+        farmerName: 'Smt. Geeta Devi',
+        location: 'Nawalgarh, Jhunjhunu',
+        yield: '26.68 Kg',
+        image: BSP_9891,
+        description: "Representing Nawalgarh, Jhunjhunu, Smt. Geeta Devi's Jersey cow secured a prestigious second place at Rangeelo 2026, clocking an impressive 24-hour yield of 26.68 Kg.\n\nThis success is a direct result of dedication to quality feeding and daily care."
+      },
+      {
+        rank: 3,
+        farmerName: 'Shri Mangiram ji',
+        location: 'Hanumangarh',
+        yield: '25.02 Kg',
+        image: DEEP0171,
+        description: 'Securing 3rd Prize in the Jersey category, Shri Mangiram ji (Hanumangarh) recorded 25.02 kg in 24 hours.\n\nA brilliant reflection of hard work and superior genetics.'
+      }
+    ]
+  },
+  {
+    id: 'murrah',
+    name: 'Murrah',
+    winners: [
+      {
+        rank: 1,
+        farmerName: 'Shri Basant',
+        location: 'Bhiwani, Haryana',
+        yield: '26.94 Kg',
+        image: DEEP0197,
+        description: "Murrah Buffalo Milking Record: 26.94 kg in 24 Hours\n\nAt Rangeelo 2026, Shri Basant from Bhiwani, Haryana claimed 1st Prize as his Murrah buffalo recorded an extraordinary daily milk yield. 🥇🐃\n\nThis achievement reflects how disciplined farm practices and proper scientific rearing can enhance milk production, reinforcing the breed's popularity as 'black gold' among dairy farmers.",
+        quote: "Murrah Buffalo Milking Record: 26.94 kg in 24 Hours"
+      },
+      {
+        rank: 2,
+        farmerName: 'Shri Amandeep ji & Vedpal ji',
+        location: 'Kakarod, Jind (Haryana)',
+        yield: '20.76 Kg',
+        image: DEEP0192,
+        description: 'In the Murrah category, the buffalo of Shri Amandeep ji & Vedpal ji, Kakarod, Jind (Haryana), earned 2nd position at Rangeelo 2026 with a solid 20.76 Kg in 24 hours.\n\nBehind this performance is a story of disciplined management and top-tier husbandry.'
+      },
+      {
+        rank: 3,
+        farmerName: 'Shri Yashveer ji',
+        location: 'Jind',
+        yield: '20.30 Kg',
+        image: DEEP0186,
+        description: 'Shri Yashveer ji (Jind) earned 3rd Prize in the Murrah category with 20.30 kg in 24 hours.\n\nSolid management leads to solid results. Keep building on this success and watch your herd reach its peak in superior genetics.'
+      }
+    ]
+  },
+  {
+    id: 'rathi',
+    name: 'Rathi',
+    winners: [
+      {
+        rank: 1,
+        farmerName: 'Shri Dinesh Gurjar',
+        location: 'Ajmer, Rajasthan',
+        yield: '17.36 Kg',
+        image: Rathi1st,
+        description: 'At Rangeelo 2026, indigenous excellence was demonstrated in the Rathi category. Congratulations to Shri Dinesh Gurjar from Ajmer, Rajasthan for securing 1st Prize with a yield of 17.36 kg in 24 hours.\n\n#Rangeelo2026 #MilkingCompetition #Rathi #IndigenousCattle #DairyExcellence',
+        quote: 'Outstanding milk yield and superior genetics in Rathi breed.'
+      },
+      {
+        rank: 2,
+        farmerName: 'Shri Ramesh ji & Ramkaran ji',
+        location: 'Kayad, Ajmer',
+        yield: '16.50 Kg',
+        image: Rathi2nd,
+        description: 'Congratulations to Shri Ramesh ji & Ramkaran ji from Kayad, Ajmer for securing 2nd place in the Rathi category with 16.50 kg in 24 hours at Rangeelo 2026.'
+      },
+      {
+        rank: 3,
+        farmerName: 'Shri Surendra Jat ji',
+        location: 'Alwar',
+        yield: '15.94 Kg',
+        image: Rathi3rd,
+        description: 'Shri Surendra Jat ji (Alwar) earned 3rd Prize in the Rathi category with a strong 15.94 kg in 24 hours.\n\nA great display of disciplined care and native breed potential.'
+      }
+    ]
+  },
+  {
+    id: 'sahiwal',
+    name: 'Sahiwal',
+    winners: [
+      {
+        rank: 1,
+        farmerName: 'Shri Randeep Choudhary',
+        location: 'Karnal, Haryana',
+        yield: '22.36 Kg',
+        image: Sahiwal1st,
+        description: 'At Rangeelo 2026, the “Gold of India” once again demonstrated its strength in dairy production.\n\nCongratulations to Shri Randeep Choudhary from Karnal, Haryana for securing 1st Prize in the Sahiwal category with a yield of 22.36 kg in 24 hours.\n\nConsistent herd management and disciplined dairy practices remain the foundation behind such performances.',
+        quote: 'The "Gold of India" once again demonstrated its strength.'
+      },
+      {
+        rank: 2,
+        farmerName: 'Shri Naresh Kumar',
+        location: 'Taraori, Karnal (Haryana)',
+        yield: '19.18 Kg',
+        image: Sahiwal2nd,
+        description: 'At the Rangeelo 2026 competition, a Sahiwal cow owned by Shri Naresh Kumar of Taraori, Karnal (Haryana), earned a prestigious 2nd place. The cow produced an impressive 19.18 Kg within a 24-hour period.\n\nA proud showcase of the true strength of the Sahiwal breed, reflecting the rich dairy legacy of the Rajasthan–Haryana region.'
+      },
+      {
+        rank: 3,
+        farmerName: 'Shri Radheshyam Jat ji',
+        location: 'Alwar',
+        yield: '18.96 Kg',
+        image: Sahiwal3rd,
+        description: 'In the Sahiwal category at Rangeelo 2026 Milking Competition, the cow of Shri Radheshyam Jat ji (Alwar) secured 3rd Prize with a total yield of 18.96 kg in 24 hours.\n\nA clear reflection of disciplined milking and balanced feeding. You’ve mastered the basics—now keep refining the details to reach the top tier.'
+      }
+    ]
+  },
+  {
     id: 'tharparkar',
     name: 'Tharparkar',
     winners: [
       {
         rank: 1,
-        farmerName: 'Shri Ramswaroop ji',
-        location: 'Alwar',
-        yield: '11.48 Kg',
+        farmerName: 'Shri Balveer Karesiya',
+        location: 'Jaitaran, Rajasthan',
+        yield: '13.30 Kg',
         image: Tharparkar1st,
-        description: 'Rangeelo 2026 Milking Competition brought out standout performers among indigenous breeds.\n\nIn the Tharparkar category, the cow of Shri Ramswaroop ji (Alwar) took 1st Prize with a total yield of 11.48 kg in 24 hours.\n\nStrong performance is built on routine and good nutrition.',
-        quote: '1st Prize with a total yield of 11.48 kg in 24 hours.'
+        description: 'At Rangeelo 2026 – Milking Competition, adaptability and productivity were clearly visible.\n\nIn the Tharparkar category, the winning cow recorded 13.30 Kg total milk yield in 24 hours.\n\nCongratulations to Shri Balveer Karesiya (Jaitaran, Rajasthan) for securing 1st Prize and highlighting the strength of Tharparkar cattle.',
+        quote: 'Adaptability and productivity were clearly visible.'
       },
       {
         rank: 2,
-        farmerName: 'Shri Vijay Singh ji',
-        location: 'Ajmer',
-        yield: '10.32 Kg',
+        farmerName: 'Shri Harshit Jhuriya ji',
+        location: 'Sikar, Rajasthan',
+        yield: '12.88 Kg',
         image: Tharparkar2ndimage,
         video: Tharparkar2ndVideo,
-        description: 'Congratulations to Shri Vijay Singh ji (Ajmer) for securing 2nd place in the Tharparkar category with 10.32 kg in 24 hours.\n\nThis performance is a testament to consistent care and the potential of the breed.\n\nStay on this path, keep fine-tuning your practices, and get ready for an even bigger push next season.'
+        description: 'Shri Harshit Jhuriya ji, Sikar, secured 2nd place in the Tharparkar category at Rangeelo 2026 with 12.88 Kg total yield.\n\nCareful attention and steady routine helped achieve this proud milestone.'
       },
       {
         rank: 3,
@@ -459,68 +545,6 @@ export const jaipurPashuMelaData: BreedCategory[] = [
         yield: '9.50 Kg',
         image: Tharparkar3rd,
         description: 'Securing 3rd Prize in the Tharparkar category, Shri Udaypal ji recorded 9.50 kg in 24 hours.\n\nStrong discipline in milking routine and feeding has clearly paid off.\n\nThis 3rd place finish is a solid stepping stone — keep building the momentum and continue strengthening your herd with better genetics.'
-      }
-    ]
-  },
-  {
-    id: 'hfcb',
-    name: 'HFCB',
-    winners: [
-      {
-        rank: 1,
-        farmerName: 'Shri Dinesh Gurjar',
-        location: 'Ajmer, Rajasthan',
-        yield: '34.62 Kg',
-        image: DEEP0198,
-        description: 'At Rangeelo 2026 – Milking Competition, excellence in high-yield cross-breed productivity took center stage.\n\nIn the HFCB Category, a remarkable benchmark was set as the winning cow recorded an outstanding 34.62 Kg total milk yield in 24 hours.\n\nHeartiest congratulations to Shri Dinesh Gurjar from Ajmer, Rajasthan for securing 1st Prize with this exceptional record performance.',
-        quote: 'Outstanding 34.62 Kg total milk yield in 24 hours.'
-      },
-      {
-        rank: 2,
-        farmerName: 'Shri Gagan Singh',
-        location: 'Ajmer',
-        yield: '31.20 Kg',
-        image: crossbreed3,
-        description: 'Congratulations to Shri Gagan Singh from Ajmer for securing 2nd place in the HFCB category with a stellar 31.20 Kg in 24 hours.\n\nThis success is a direct result of meticulous herd care, consistent management, and dedication.'
-      },
-      {
-        rank: 3,
-        farmerName: 'Shri Om Prakash ji',
-        location: 'Ashok Nagar, Ajmer',
-        yield: '28.50 Kg',
-        image: DEEP0164,
-        description: 'Congratulations to Shri Om Prakash ji, Ashok Nagar, Ajmer, for securing 3rd place in the HFCB category at Rangeelo 2026 with 28.50 Kg in 24 hours.\n\nYour disciplined approach to daily care and feeding has delivered fantastic results.'
-      }
-    ]
-  },
-  {
-    id: 'jycb',
-    name: 'JYCB',
-    winners: [
-      {
-        rank: 1,
-        farmerName: 'Shri Naresh Kumar',
-        location: 'Kaithal, Haryana',
-        yield: '32.10 Kg',
-        image: BSP_9907,
-        description: "The JYCB category at this year's Milking Competition at Rangeelo 2026 set a high standard for productivity and focused herd management.\n\n• Winner: Shri Naresh Kumar (Kaithal, Haryana)\n• Yield: 32.10 Kg (Total 24-hour yield)\n\nCongratulations to Shri Naresh Kumar for this 1st Prize victory in the JYCB category.",
-        quote: 'Set a high standard for productivity in JYCB category.'
-      },
-      {
-        rank: 2,
-        farmerName: 'Smt. Geeta Devi',
-        location: 'Nawalgarh, Jhunjhunu',
-        yield: '26.68 Kg',
-        image: BSP_9891,
-        description: "Representing Nawalgarh, Jhunjhunu, Smt. Geeta Devi's JYCB cow secured a prestigious second place at Rangeelo 2026, clocking an impressive 24-hour yield of 26.68 Kg.\n\nThis success is a direct result of dedication to quality feeding and daily care."
-      },
-      {
-        rank: 3,
-        farmerName: 'Shri Mangiram ji',
-        location: 'Hanumangarh',
-        yield: '25.02 Kg',
-        image: DEEP0171,
-        description: 'Securing 3rd Prize in the JYCB category, Shri Mangiram ji (Hanumangarh) recorded 25.02 kg in 24 hours.\n\nA brilliant reflection of hard work and superior genetics.'
       }
     ]
   }

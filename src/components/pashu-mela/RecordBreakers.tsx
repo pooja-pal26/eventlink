@@ -40,7 +40,53 @@ export const RecordBreakers = () => {
   const city = (pathCity || searchParams.get('city') || 'kashi').toLowerCase();
   const isJaipur = city === 'jaipur';
 
-  const records = [
+  const jaipurRecords = [
+    {
+      title: language === 'hi' ? "सर्वाधिक दूध उपज" : "Highest Milk Yield",
+      value: "64.44",
+      unit: language === 'hi' ? "किग्रा" : "Kg",
+      subtitle: language === 'hi' ? "HF श्रेणी (24 घंटे)" : "HF Category (24 Hours)",
+      icon: TrendingUp,
+      color: "from-cyan-500 to-blue-600",
+      glowColor: "rgba(6, 182, 212, 0.4)",
+      link: "#breed-showcase",
+      tabId: "hf"
+    },
+    {
+      title: language === 'hi' ? "सर्वश्रेष्ठ स्वदेशी नस्ल" : "Best Indigenous Breed",
+      value: "26.88",
+      unit: language === 'hi' ? "किग्रा" : "Kg",
+      subtitle: language === 'hi' ? "गिर श्रेणी (नया अखिल भारतीय रिकॉर्ड)" : "Gir Category (New Pan-India Record)",
+      icon: Star,
+      color: "from-amber-400 to-orange-600",
+      glowColor: "rgba(245, 158, 11, 0.4)",
+      link: "#breed-showcase",
+      tabId: "gir"
+    },
+    {
+      title: language === 'hi' ? "सर्वश्रेष्ठ विदेशी नस्ल" : "Best Exotic Breed",
+      value: "36.22",
+      unit: language === 'hi' ? "किग्रा" : "Kg",
+      subtitle: language === 'hi' ? "जर्सी श्रेणी" : "Jersey Category",
+      icon: Medal,
+      color: "from-fuchsia-500 to-purple-600",
+      glowColor: "rgba(217, 70, 239, 0.4)",
+      link: "#breed-showcase",
+      tabId: "jersey"
+    },
+    {
+      title: language === 'hi' ? "शीर्ष डेयरी किसान" : "Top Dairy Farmer",
+      value: language === 'hi' ? "श्री पवन" : "Shri Pawan",
+      unit: "",
+      subtitle: language === 'hi' ? "हिसार, हरियाणा" : "Hisar, Haryana",
+      icon: Crown,
+      color: "from-rose-500 to-red-600",
+      glowColor: "rgba(244, 63, 94, 0.4)",
+      link: "#success-stories"
+    }
+  ];
+
+  const kashiRecords = [
     {
       title: language === 'hi' ? "सर्वाधिक दूध उपज" : "Highest Milk Yield",
       value: "34.62",
@@ -85,6 +131,8 @@ export const RecordBreakers = () => {
       link: "#success-stories"
     }
   ];
+
+  const records = isJaipur ? jaipurRecords : kashiRecords;
 
   return (
     <section className="py-32 bg-zinc-950 relative overflow-hidden">
