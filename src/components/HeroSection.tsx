@@ -28,7 +28,7 @@ import slide2 from '@/assets/SliderImagess/2.webp';
 import slide5 from '@/assets/SliderImagess/DEEP8797.JPG.jpeg';
 import slide7 from '@/assets/SliderImagess/7.webp';
 import slide8 from '@/assets/SliderImagess/8.webp';
-import slide10 from '@/assets/SliderImagess/10.webp';
+import slide10 from '@/assets/SliderImagess/DSC_4599.webp';
 import slide11 from '@/assets/SliderImagess/24.webp';
 import slide15 from '@/assets/SliderImagess/j39plxmlawhaqe9v7utp.webp';
 import slide16 from '@/assets/SliderImagess/jkzqhrpwoawamttrtdx6.webp';
