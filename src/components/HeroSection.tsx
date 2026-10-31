@@ -20,6 +20,7 @@ import kashi3 from '@/assets/SliderImagess/DSC_4379.webp';
 import kashi4 from '@/assets/SliderImagess/DSC_4411.webp';
 import dineshMOG from '@/assets/grandPashuMela/Dinesh_Moment_of_Glory.webp';
 import kashi6 from '@/assets/SliderImagess/DSC_4665.webp';
+import vinodMOG from '@/assets/grandPashuMela/Vinod_MOG.webp';
 
 // Rangeelo Jaipur photos
 import slide1 from '@/assets/SliderImagess/1 (3).png';
@@ -39,7 +40,7 @@ import slide22 from '@/assets/SliderImagess/xo0ouuzyhhkfleqro0eu.webp';
 import slide23 from '@/assets/SliderImagess/xsrilhpnjhqzt0oiccrk.webp';
 import slide24 from '@/assets/SliderImagess/cattle show jpg.jpeg';
 
-const kashiImages = [kashi1, kashi2, exhibitorImg, kashi3, kashi4, dineshMOG, kashi6];
+const kashiImages = [kashi1, kashi2, exhibitorImg, kashi3, kashi4, dineshMOG, kashi6, vinodMOG];
 const jaipurImages = [
   slide8, slide10, slide11, slide24,
   slide2, slide7, slide21, slide22,
@@ -52,28 +53,29 @@ const heroSlides = [...kashiImages, ...jaipurImages];
 // Heading & stats text mapped to each slide source
 const slideHeadings: Record<string, { number?: string; label: string; labelHi?: string }> = {
   // Rangeelo Kashi 2026
-  [exhibitorImg]: { number: '150+', label: 'Exhibitor', labelHi: 'प्रदर्शक' },
-  [kashi3]: { number: '7', label: 'Indigenous Breeds &\nElite Bull Showcase', labelHi: 'स्वदेशी नस्लें एवं\nउत्कृष्ट सांड प्रदर्शन' },
-  [kashi4]: { number: '₹ 20,000', label: 'NDS Merit Awards &\nStudent Scholarship', labelHi: 'एनडीएस मेरिट अवार्ड्स एवं\nविद्यार्थी छात्रवृत्ति सम्मान' },
-  [dineshMOG]: { number: '34.62 Kg', label: 'Milking Champion\n1st Prize Winner', labelHi: 'दुग्ध दोहन चैंपियन\nप्रथम पुरस्कार विजेता' },
-  [kashi6]: { number: '10+', label: 'Dhol & Cultural Folk\nDance Performances', labelHi: 'ढोल एवं सांस्कृतिक\nलोक नृत्य प्रस्तुतियाँ' },
+  [exhibitorImg]: { number: '150+', label: 'Exhibitors', labelHi: 'प्रदर्शक' },
+  [kashi3]: { number: '', label: 'Featuring High \nGenetic Merit Bulls', labelHi: 'स्वदेशी नस्लें एवं\nउत्कृष्ट सांड प्रदर्शन' },
+  [kashi4]: { number: '', label: 'NDS Merit Awards', labelHi: 'एनडीएस मेरिट अवार्ड्स एवं\nविद्यार्थी छात्रवृत्ति सम्मान' },
+  [dineshMOG]: { number: '21', label: 'Milking Champions \n Felicitated', labelHi: 'दुग्ध दोहन विजेता\nसम्मानित' },
+  [kashi6]: { number: '', label: 'Cultural & Folk\nPerformances', labelHi: 'ढोल एवं सांस्कृतिक\nलोक नृत्य प्रस्तुतियाँ' },
+  [vinodMOG]: { number: '150+', label: 'Pashu Mela\nParticipants', labelHi: 'पशु मेला\nप्रतिभागी' },
 
   // Rangeelo Jaipur (Visually matched to each slide image - Unchanged)
-  [slide8]: { number: '10+', label: 'Cultural & Folk\nPerformances', labelHi: 'सांस्कृतिक एवं लोक कला\nप्रस्तुतियाँ' },
-  [slide10]: { label: 'Progressive Farmer\nInteractions', labelHi: 'प्रगतिशील किसान\nसंवाद सत्र' },
-  [slide11]: { number: '50,000+', label: 'Visitors\n(Farmers & Students)', labelHi: 'आगंतुक\n(किसान एवं छात्र)' },
-  [slide24]: { number: '8', label: 'High Genetic\nMerit Breeds', labelHi: 'उच्च आनुवंशिक\nयोग्यता वाली नस्लें' },
-  [slide7]: { number: '150+', label: 'Pashu Mela\nParticipants', labelHi: 'पशु मेला\nप्रतिभागी' },
-  [slide21]: { number: '50,000+', label: 'Dairy Farmers\n& Visitors', labelHi: 'डेयरी किसान\nएवं आगंतुक' },
-  [slide22]: { number: '500+', label: 'Dignitaries &\nDairy Leaders', labelHi: 'विशिष्ट अतिथि एवं\nडेयरी नेतृत्व' },
-  [slide23]: { label: 'Live Machinery &\nTechnology Demo', labelHi: 'लाइव कृषि यंत्र एवं\nतकनीकी प्रदर्शन' },
-  [slide1]: { label: 'Felicitation of\nDistinguished Guests', labelHi: 'विशिष्ट अतिथियों का\nअभिनंदन एवं सम्मान' },
-  [slide5]: { number: '₹ 50 Lakh+', label: 'Prize Money &\nMerit Awards', labelHi: 'कुल पुरस्कार राशि\nएवं मेरिट सम्मान' },
-  [slide15]: { number: '24', label: 'Milking Champions\nHonoured', labelHi: 'दुग्ध दोहन विजेता\nसम्मानित' },
-  [slide16]: { label: "Welcome to India's\nLargest Pashu Mela", labelHi: 'भारत के भव्य\nपशु मेले में सुस्वागतम्' },
-  [slide17]: { number: '500+', label: 'Delegates &\nIndustry Experts', labelHi: 'डेलीगेट्स एवं\nडेयरी विशेषज्ञ' },
-  [slide18]: { number: '150+', label: 'Exhibition Stalls\n& Live Zones', labelHi: 'प्रदर्शनी स्टॉल\nएवं लाइव ज़ोन' },
-  [slide20]: { label: 'Recognition of\nDairy Pioneers', labelHi: 'डेयरी नवाचार एवं\nप्रगतिशील किसान सम्मान' },
+  // [slide8]: { number: '10+', label: 'Cultural & Folk\nPerformances', labelHi: 'सांस्कृतिक एवं लोक कला\nप्रस्तुतियाँ' },
+  // [slide10]: { label: 'Progressive Farmer\nInteractions', labelHi: 'प्रगतिशील किसान\nसंवाद सत्र' },
+  // [slide11]: { number: '50,000+', label: 'Visitors\n(Farmers & Students)', labelHi: 'आगंतुक\n(किसान एवं छात्र)' },
+  // [slide24]: { number: '8', label: 'High Genetic\nMerit Breeds', labelHi: 'उच्च आनुवंशिक\nयोग्यता वाली नस्लें' },
+  // [slide7]: { number: '150+', label: 'Pashu Mela\nParticipants', labelHi: 'पशु मेला\nप्रतिभागी' },
+  // [slide21]: { number: '50,000+', label: 'Dairy Farmers\n& Visitors', labelHi: 'डेयरी किसान\nएवं आगंतुक' },
+  // [slide22]: { number: '500+', label: 'Dignitaries &\nDairy Leaders', labelHi: 'विशिष्ट अतिथि एवं\nडेयरी नेतृत्व' },
+  // [slide23]: { label: 'Live Machinery &\nTechnology Demo', labelHi: 'लाइव कृषि यंत्र एवं\nतकनीकी प्रदर्शन' },
+  // [slide1]: { label: 'Felicitation of\nDistinguished Guests', labelHi: 'विशिष्ट अतिथियों का\nअभिनंदन एवं सम्मान' },
+  // [slide5]: { number: '₹ 50 Lakh+', label: 'Prize Money &\nMerit Awards', labelHi: 'कुल पुरस्कार राशि\nएवं मेरिट सम्मान' },
+  // [slide15]: { number: '24', label: 'Milking Champions\nHonoured', labelHi: 'दुग्ध दोहन विजेता\nसम्मानित' },
+  // [slide16]: { label: "Welcome to India's\nLargest Pashu Mela", labelHi: 'भारत के भव्य\nपशु मेले में सुस्वागतम्' },
+  // [slide17]: { number: '500+', label: 'Delegates &\nIndustry Experts', labelHi: 'डेलीगेट्स एवं\nडेयरी विशेषज्ञ' },
+  // [slide18]: { number: '', label: 'Live Demonstration\nZones', labelHi: 'प्रदर्शनी स्टॉल\nएवं लाइव ज़ोन' },
+  // [slide20]: { label: 'Recognition of\nDairy Pioneers', labelHi: 'डेयरी नवाचार एवं\nप्रगतिशील किसान सम्मान' },
 };
 
 // Count-up component for hero slide numbers
