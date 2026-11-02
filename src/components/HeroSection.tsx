@@ -106,7 +106,7 @@ const slideHeadings: Record<string, { number?: string; label: string; labelHi?: 
 
   // Rangeelo Jaipur (Visually matched to each slide image - Unchanged)
   [slide10]: { label: 'Progressive Farmer\nInteraction', labelHi: 'प्रगतिशील किसान\nसंवाद सत्र' },
-  [slide11]: { number: '5000+', label: 'Participants &\nVisitors', labelHi: 'प्रतिभागी एवं\nआगंतुक' },
+  [slide11]: { number: '50000+', label: 'Participants &\nVisitors', labelHi: 'प्रतिभागी एवं\nआगंतुक' },
   [slide23]: { label: 'Live Machinery &\nTechnology Demo', labelHi: 'लाइव कृषि यंत्र एवं\nतकनीकी प्रदर्शन' },
   [slide18]: { number: '', label: 'Live Demonstration\nZones', labelHi: 'प्रदर्शनी स्टॉल\nएवं लाइव ज़ोन' },
   [slide24]: { number: '7+', label: 'Breeds\nOne Milking Competition', labelHi: 'उच्च आनुवंशिक नस्लें एवं\nदुग्ध दोहन प्रतियोगिता' },
