@@ -72,12 +72,14 @@ const heroSlides: HeroSlideItem[] = [
   // Live Demonstration Zones
   { type: 'image', src: slide18 },
 
+  // Breeds & One Milking Competition (cattle show jpg.jpeg)
+  { type: 'image', src: slide24 },
+
   // Rangeelo Jaipur video
   { type: 'video', src: videoJaipur },
 
   // Rangeelo Jaipur photos
   { type: 'image', src: slide8 },
-  { type: 'image', src: slide24 },
   { type: 'image', src: slide2 },
   { type: 'image', src: slide7 },
   { type: 'image', src: slide21 },
@@ -107,7 +109,7 @@ const slideHeadings: Record<string, { number?: string; label: string; labelHi?: 
   [slide11]: { number: '5000+', label: 'Participants &\nVisitors', labelHi: 'प्रतिभागी एवं\nआगंतुक' },
   [slide23]: { label: 'Live Machinery &\nTechnology Demo', labelHi: 'लाइव कृषि यंत्र एवं\nतकनीकी प्रदर्शन' },
   [slide18]: { number: '', label: 'Live Demonstration\nZones', labelHi: 'प्रदर्शनी स्टॉल\nएवं लाइव ज़ोन' },
-  [slide24]: { number: '7+', label: 'Breeds \nOne Milking Competition', labelHi: 'उच्च आनुवंशिक\nयोग्यता वाली नस्लें' },
+  [slide24]: { number: '7+', label: 'Breeds\nOne Milking Competition', labelHi: 'उच्च आनुवंशिक नस्लें एवं\nदुग्ध दोहन प्रतियोगिता' },
 
   // All Rangeelo Jaipur stats (Commented - uncomment any as needed):
   // [slide8]: { number: '10+', label: 'Cultural & Folk\nPerformances', labelHi: 'सांस्कृतिक एवं लोक कला\nप्रस्तुतियाँ' },
