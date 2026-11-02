@@ -24,8 +24,6 @@ import kashi6 from '@/assets/SliderImagess/DSC_4665.webp';
 import vinodMOG from '@/assets/grandPashuMela/Vinod_MOG.webp';
 
 // Compressed Videos from assets/VideoSlider/
-import videoKashi1 from '@/assets/VideoSlider/Website Rangeelo 2.O.mp4';
-import videoKashi2 from '@/assets/VideoSlider/Wrap up Vo_compressed.mp4';
 import videoJaipur from '@/assets/VideoSlider/Website rangeelo.mp4';
 
 // Rangeelo Jaipur photos
@@ -68,27 +66,27 @@ const heroSlides: HeroSlideItem[] = [
   // 10: Audience image (24.webp)
   { type: 'image', src: slide11 },
 
-  // 11-12: Rangeelo Kashi videos
-  { type: 'video', src: videoKashi1 },
-  { type: 'video', src: videoKashi2 },
+  // Live Machinery & Technology Demo
+  { type: 'image', src: slide23 },
 
-  // 13: Rangeelo Jaipur video
+  // Live Demonstration Zones
+  { type: 'image', src: slide18 },
+
+  // Rangeelo Jaipur video
   { type: 'video', src: videoJaipur },
 
-  // 14+: Rangeelo Jaipur photos
+  // Rangeelo Jaipur photos
   { type: 'image', src: slide8 },
   { type: 'image', src: slide24 },
   { type: 'image', src: slide2 },
   { type: 'image', src: slide7 },
   { type: 'image', src: slide21 },
   { type: 'image', src: slide22 },
-  { type: 'image', src: slide23 },
   { type: 'image', src: slide1 },
   { type: 'image', src: slide5 },
   { type: 'image', src: slide15 },
   { type: 'image', src: slide16 },
   { type: 'image', src: slide17 },
-  { type: 'image', src: slide18 },
   { type: 'image', src: slide20 },
 ];
 
@@ -106,8 +104,10 @@ const slideHeadings: Record<string, { number?: string; label: string; labelHi?: 
 
   // Rangeelo Jaipur (Visually matched to each slide image - Unchanged)
   [slide10]: { label: 'Progressive Farmer\nInteraction', labelHi: 'प्रगतिशील किसान\nसंवाद सत्र' },
-  [slide24]: { number: '7+', label: 'One Milking Breeds', labelHi: 'उच्च आनुवंशिक\nयोग्यता वाली नस्लें' },
+  [slide11]: { number: '5000+', label: 'Participants &\nVisitors', labelHi: 'प्रतिभागी एवं\nआगंतुक' },
+  [slide23]: { label: 'Live Machinery &\nTechnology Demo', labelHi: 'लाइव कृषि यंत्र एवं\nतकनीकी प्रदर्शन' },
   [slide18]: { number: '', label: 'Live Demonstration\nZones', labelHi: 'प्रदर्शनी स्टॉल\nएवं लाइव ज़ोन' },
+  [slide24]: { number: '7+', label: 'Breeds \nOne Milking Competition', labelHi: 'उच्च आनुवंशिक\nयोग्यता वाली नस्लें' },
 
   // All Rangeelo Jaipur stats (Commented - uncomment any as needed):
   // [slide8]: { number: '10+', label: 'Cultural & Folk\nPerformances', labelHi: 'सांस्कृतिक एवं लोक कला\nप्रस्तुतियाँ' },
@@ -118,7 +118,7 @@ const slideHeadings: Record<string, { number?: string; label: string; labelHi?: 
   // [slide7]: { number: '150+', label: 'Pashu Mela\nParticipants', labelHi: 'पशु मेला\nप्रतिभागी' },
   // [slide21]: { number: '50,000+', label: 'Dairy Farmers\n& Visitors', labelHi: 'डेयरी किसान\nएवं आगंतुक' },
   // [slide22]: { number: '500+', label: 'Dignitaries &\nDairy Leaders', labelHi: 'विशिष्ट अतिथि एवं\nडेयरी नेतृत्व' },
-  [slide23]: { label: 'Live Machinery &\nTechnology Demo', labelHi: 'लाइव कृषि यंत्र एवं\nतकनीकी प्रदर्शन' },
+  // [slide23]: { label: 'Live Machinery &\nTechnology Demo', labelHi: 'लाइव कृषि यंत्र एवं\nतकनीकी प्रदर्शन' },
   // [slide1]: { label: 'Felicitation of\nDistinguished Guests', labelHi: 'विशिष्ट अतिथियों का\nअभिनंदन एवं सम्मान' },
   // [slide5]: { number: '₹ 50 Lakh+', label: 'Prize Money &\nMerit Awards', labelHi: 'कुल पुरस्कार राशि\nएवं मेरिट सम्मान' },
   // [slide15]: { number: '24', label: 'Milking Champions\nHonoured', labelHi: 'दुग्ध दोहन विजेता\nसम्मानित' },
