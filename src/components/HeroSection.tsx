@@ -108,6 +108,24 @@ const slideHeadings: Record<string, { number?: string; label: string; labelHi?: 
   [slide10]: { label: 'Progressive Farmer\nInteraction', labelHi: 'प्रगतिशील किसान\nसंवाद सत्र' },
   [slide24]: { number: '7+', label: 'One Milking Breeds', labelHi: 'उच्च आनुवंशिक\nयोग्यता वाली नस्लें' },
   [slide18]: { number: '', label: 'Live Demonstration\nZones', labelHi: 'प्रदर्शनी स्टॉल\nएवं लाइव ज़ोन' },
+
+  // All Rangeelo Jaipur stats (Commented - uncomment any as needed):
+  // [slide8]: { number: '10+', label: 'Cultural & Folk\nPerformances', labelHi: 'सांस्कृतिक एवं लोक कला\nप्रस्तुतियाँ' },
+  // [slide10]: { label: 'Progressive Farmer\nInteractions', labelHi: 'प्रगतिशील किसान\nसंवाद सत्र' },
+  // [slide11]: { number: '50,000+', label: 'Visitors\n(Farmers & Students)', labelHi: 'आगंतुक\n(किसान एवं छात्र)' },
+  // [slide24]: { number: '8', label: 'High Genetic\nMerit Breeds', labelHi: 'उच्च आनुवंशिक\nयोग्यता वाली नस्लें' },
+  // [slide2]: { number: '150+', label: 'Pashu Mela\nParticipants', labelHi: 'पशु मेला\nप्रतिभागी' },
+  // [slide7]: { number: '150+', label: 'Pashu Mela\nParticipants', labelHi: 'पशु मेला\nप्रतिभागी' },
+  // [slide21]: { number: '50,000+', label: 'Dairy Farmers\n& Visitors', labelHi: 'डेयरी किसान\nएवं आगंतुक' },
+  // [slide22]: { number: '500+', label: 'Dignitaries &\nDairy Leaders', labelHi: 'विशिष्ट अतिथि एवं\nडेयरी नेतृत्व' },
+  [slide23]: { label: 'Live Machinery &\nTechnology Demo', labelHi: 'लाइव कृषि यंत्र एवं\nतकनीकी प्रदर्शन' },
+  // [slide1]: { label: 'Felicitation of\nDistinguished Guests', labelHi: 'विशिष्ट अतिथियों का\nअभिनंदन एवं सम्मान' },
+  // [slide5]: { number: '₹ 50 Lakh+', label: 'Prize Money &\nMerit Awards', labelHi: 'कुल पुरस्कार राशि\nएवं मेरिट सम्मान' },
+  // [slide15]: { number: '24', label: 'Milking Champions\nHonoured', labelHi: 'दुग्ध दोहन विजेता\nसम्मानित' },
+  // [slide16]: { label: "Welcome to India's\nLargest Pashu Mela", labelHi: 'भारत के भव्य\nपशु मेले में सुस्वागतम्' },
+  // [slide17]: { number: '500+', label: 'Delegates &\nIndustry Experts', labelHi: 'डेलीगेट्स एवं\nडेयरी विशेषज्ञ' },
+  // [slide18]: { number: '150+', label: 'Exhibition Stalls\n& Live Zones', labelHi: 'प्रदर्शनी स्टॉल\nएवं लाइव ज़ोन' },
+  // [slide20]: { label: 'Recognition of\nDairy Pioneers', labelHi: 'डेयरी नवाचार एवं\nप्रगतिशील किसान सम्मान' },
 };
 
 // Count-up component for hero slide numbers
