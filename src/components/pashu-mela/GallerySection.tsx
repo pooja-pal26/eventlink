@@ -118,8 +118,8 @@ const kashiGalleryImages = [
   harimohanStage,
 
   // Cultural & Closing Ceremony
-  kashiImg5,
-  kashiImg6,
+  // kashiImg5,
+  // kashiImg6,
 ];
 
 export const GallerySection = () => {

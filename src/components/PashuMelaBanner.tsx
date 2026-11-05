@@ -89,7 +89,7 @@ const PashuMelaBanner = () => {
     suffix: s.suffixKg
       ? (language === 'hi' ? ' किग्रा' : ' Kg')
       : s.suffixLakh
-      ? (language === 'hi' ? ' लाख +' : ' Lakh +')
+      ? (language === 'hi' ? ' लाख+' : ' Lakh+')
       : '',
   }));
 
@@ -173,19 +173,19 @@ const PashuMelaBanner = () => {
             </p>
 
             {/* Edition-specific stats cards */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 mb-10 max-w-3xl">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3.5 sm:gap-4 lg:gap-4 mb-10 max-w-3xl">
               {currentStats.map((stat, index) => (
                 <Link to={currentEdition.href} key={`${currentEdition.id}-${index}`} className="block h-full">
                   <motion.div 
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1, duration: 0.5 }}
-                    className="h-full flex flex-col bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-5 hover:bg-white/10 hover:border-white/20 transition-all cursor-pointer group"
+                    className="h-full flex flex-col bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4 sm:p-5 lg:px-4 lg:py-5 hover:bg-white/10 hover:border-white/20 transition-all cursor-pointer group"
                   >
                     <div className="text-[#D97706] mb-3 group-hover:scale-110 transition-transform origin-left">
                       <stat.icon className="w-6 h-6" />
                     </div>
-                    <div className="text-2xl lg:text-3xl font-bold text-white mb-2 group-hover:text-[#D4AF37] transition-colors whitespace-nowrap tracking-tight">
+                    <div className="text-xl sm:text-2xl md:text-xl lg:text-[1.35rem] xl:text-2xl font-bold text-white mb-2 group-hover:text-[#D4AF37] transition-colors whitespace-nowrap tracking-tight">
                       {stat.prefix}<CountUp key={`${currentEdition.id}-${index}`} target={stat.target} decimals={stat.decimals} delay={index * 0.1} />{stat.suffix}
                     </div>
                     <div className="text-sm font-medium text-white/60 uppercase tracking-wider mt-auto pt-2">
@@ -196,6 +196,7 @@ const PashuMelaBanner = () => {
               ))}
             </div>
 
+            {/* Register Now button commented out
             <Link to={currentEdition.href}>
               <Button 
                 size="lg" 
@@ -205,6 +206,7 @@ const PashuMelaBanner = () => {
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
+            */}
           </motion.div>
         </div>
       </div>

@@ -2,7 +2,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useRef, useEffect, useCallback, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectFade, Navigation, Pagination, Autoplay } from 'swiper/modules';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Instagram } from 'lucide-react';
 import type { Swiper as SwiperType } from 'swiper';
 
 // Swiper styles
@@ -76,20 +76,20 @@ const heroSlides: HeroSlideItem[] = [
   { type: 'image', src: slide24 },
 
   // Rangeelo Jaipur video
-  { type: 'video', src: videoJaipur },
+  // { type: 'video', src: videoJaipur },
 
   // Rangeelo Jaipur photos
-  { type: 'image', src: slide8 },
-  { type: 'image', src: slide2 },
-  { type: 'image', src: slide7 },
-  { type: 'image', src: slide21 },
-  { type: 'image', src: slide22 },
-  { type: 'image', src: slide1 },
-  { type: 'image', src: slide5 },
-  { type: 'image', src: slide15 },
-  { type: 'image', src: slide16 },
-  { type: 'image', src: slide17 },
-  { type: 'image', src: slide20 },
+  // { type: 'image', src: slide8 },
+  // { type: 'image', src: slide2 },
+  // { type: 'image', src: slide7 },
+  // { type: 'image', src: slide21 },
+  // { type: 'image', src: slide22 },
+  // { type: 'image', src: slide1 },
+  // { type: 'image', src: slide5 },
+  // { type: 'image', src: slide15 },
+  // { type: 'image', src: slide16 },
+  // { type: 'image', src: slide17 },
+  // { type: 'image', src: slide20 },
 ];
 
 // Heading & stats text mapped to each slide source
@@ -107,8 +107,8 @@ const slideHeadings: Record<string, { number?: string; label: string; labelHi?: 
   // Rangeelo Jaipur (Visually matched to each slide image - Unchanged)
   [slide10]: { label: 'Progressive Farmer\nInteraction', labelHi: 'प्रगतिशील किसान\nसंवाद सत्र' },
   [slide11]: { number: '50000+', label: 'Participants &\nVisitors', labelHi: 'प्रतिभागी एवं\nआगंतुक' },
-  [slide23]: { label: 'Live Machinery &\nTechnology Demo', labelHi: 'लाइव कृषि यंत्र एवं\nतकनीकी प्रदर्शन' },
-  [slide18]: { number: '', label: 'Live Demonstration\nZones', labelHi: 'प्रदर्शनी स्टॉल\nएवं लाइव ज़ोन' },
+  [slide23]: { label: 'Live Machinery &\nDemonstration', labelHi: 'लाइव कृषि यंत्र एवं\nतकनीकी प्रदर्शन' },
+  // [slide18]: { number: '', label: 'Live Demonstration\nZones', labelHi: 'प्रदर्शनी स्टॉल\nएवं लाइव ज़ोन' },
   [slide24]: { number: '7+', label: 'Breeds\nOne Milking Competition', labelHi: 'उच्च आनुवंशिक नस्लें एवं\nदुग्ध दोहन प्रतियोगिता' },
 
   // All Rangeelo Jaipur stats (Commented - uncomment any as needed):
@@ -317,11 +317,11 @@ const HeroSection = () => {
         </Swiper>
       </div>
 
-      {/* Slide Heading Overlay — Top Right */}
+      {/* Slide Heading Overlay — Bottom Left */}
       {activeHeading && (
         <div
           key={headingKey}
-          className="absolute top-20 md:top-24 right-4 md:right-10 z-20 text-right pointer-events-none"
+          className="absolute bottom-12 sm:bottom-14 md:bottom-16 left-4 sm:left-6 md:left-10 z-20 text-left pointer-events-none"
           style={{
             animation: 'heroHeadingIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
           }}
@@ -371,12 +371,29 @@ const HeroSection = () => {
 
       <div className="hero-pagination absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2" />
 
+      {/* Instagram Button — Bottom Right End */}
+      <a
+        href="https://www.instagram.com/ndsrangeelo/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Follow us on Instagram"
+        className="absolute bottom-5 sm:bottom-6 right-4 sm:right-6 md:right-8 z-20 w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center text-white transition-all duration-300 hover:scale-110 shadow-lg group"
+        style={{
+          background: 'rgba(0, 0, 0, 0.45)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          border: '1px solid rgba(255, 255, 255, 0.2)',
+        }}
+      >
+        <Instagram className="w-5 h-5 text-white transition-transform group-hover:scale-110 group-hover:text-[#dd984a]" />
+      </a>
+
       {/* Heading animation keyframes & slide image/video framing */}
       <style>{`
         @keyframes heroHeadingIn {
           0% {
             opacity: 0;
-            transform: translateY(-20px) translateX(20px);
+            transform: translateY(20px) translateX(-20px);
           }
           100% {
             opacity: 1;

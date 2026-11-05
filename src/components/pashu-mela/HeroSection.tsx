@@ -127,7 +127,7 @@ export const HeroSection = () => {
             { label: language === 'hi' ? 'विजेता' : 'Winners', target: isJaipur ? 24 : 21, decimals: 0, prefix: "", suffix: "", icon: Users },
             { label: language === 'hi' ? 'नस्लें' : 'Breeds', target: isJaipur ? 8 : 7, decimals: 0, prefix: "", suffix: "", icon: Award },
             { label: language === 'hi' ? 'रिकॉर्ड दूध उपज' : 'Record Milk Yield', target: isJaipur ? 64.44 : 34.62, decimals: 2, prefix: "", suffix: language === 'hi' ? ' किग्रा' : ' Kg', icon: TrendingUp },
-            { label: language === 'hi' ? 'पुरस्कार भुगतान' : 'Award Payouts', target: 50, decimals: 0, prefix: "₹ ", suffix: language === 'hi' ? ' लाख +' : ' Lakh +', icon: Trophy },
+            { label: language === 'hi' ? 'पुरस्कार भुगतान' : 'Award Payouts', target: 50, decimals: 0, prefix: "₹ ", suffix: language === 'hi' ? ' लाख+' : ' Lakh+', icon: Trophy },
           ].map((stat, i) => (
             <motion.div 
               key={i}
