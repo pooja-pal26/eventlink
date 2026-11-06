@@ -321,29 +321,29 @@ const HeroSection = () => {
       {activeHeading && (
         <div
           key={headingKey}
-          className="absolute bottom-12 sm:bottom-14 md:bottom-16 left-4 sm:left-6 md:left-10 z-20 text-left pointer-events-none"
+          className="absolute bottom-5 sm:bottom-8 md:bottom-14 left-3 sm:left-6 md:left-10 z-20 text-left pointer-events-none max-w-[65vw] sm:max-w-none"
           style={{
             animation: 'heroHeadingIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
           }}
         >
           <div
-            className="inline-block px-5 py-3 md:px-7 md:py-4 rounded-2xl"
+            className="inline-block px-3.5 py-2 sm:px-5 sm:py-3 md:px-7 md:py-4 rounded-xl sm:rounded-2xl"
             style={{
-              background: 'rgba(0, 0, 0, 0.45)',
+              background: 'rgba(0, 0, 0, 0.55)',
               backdropFilter: 'blur(12px)',
               WebkitBackdropFilter: 'blur(12px)',
-              border: '1px solid rgba(255, 255, 255, 0.15)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
             }}
           >
             {activeHeading.number && (
               <p
-                className="text-3xl md:text-5xl lg:text-6xl font-extrabold leading-none mb-1"
+                className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-extrabold leading-none mb-0.5 sm:mb-1"
                 style={{ color: '#dd984a' }}
               >
                 <SlideCountUp value={activeHeading.number} animKey={headingKey} />
               </p>
             )}
-            <p className="text-base md:text-xl lg:text-2xl font-bold text-white leading-snug whitespace-pre-line">
+            <p className="text-xs sm:text-sm md:text-xl lg:text-2xl font-bold text-white leading-tight sm:leading-snug whitespace-pre-line">
               {language === 'hi' && activeHeading.labelHi ? activeHeading.labelHi : activeHeading.label}
             </p>
           </div>
@@ -369,7 +369,7 @@ const HeroSection = () => {
       </div>
       */}
 
-      <div className="hero-pagination absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2" />
+      <div className="hero-pagination absolute bottom-2 sm:bottom-3 md:bottom-5 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 sm:gap-2" />
 
       {/* Instagram Button — Bottom Right End */}
       <a
@@ -377,15 +377,15 @@ const HeroSection = () => {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Follow us on Instagram"
-        className="absolute bottom-5 sm:bottom-6 right-4 sm:right-6 md:right-8 z-20 w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center text-white transition-all duration-300 hover:scale-110 shadow-lg group"
+        className="absolute bottom-5 sm:bottom-8 md:bottom-14 right-3 sm:right-6 md:right-8 z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center text-white transition-all duration-300 hover:scale-110 shadow-lg group"
         style={{
-          background: 'rgba(0, 0, 0, 0.45)',
+          background: 'rgba(0, 0, 0, 0.55)',
           backdropFilter: 'blur(12px)',
           WebkitBackdropFilter: 'blur(12px)',
           border: '1px solid rgba(255, 255, 255, 0.2)',
         }}
       >
-        <Instagram className="w-5 h-5 text-white transition-transform group-hover:scale-110 group-hover:text-[#dd984a]" />
+        <Instagram className="w-4 h-4 sm:w-5 sm:h-5 text-white transition-transform group-hover:scale-110 group-hover:text-[#dd984a]" />
       </a>
 
       {/* Heading animation keyframes & slide image/video framing */}
@@ -413,11 +413,16 @@ const HeroSection = () => {
           object-position: center center !important;
         }
         @media (max-width: 767px) {
-          .hero-slider-section .swiper-slide img.hero-slide-kashi1,
-          .hero-slider-section .swiper-slide img.hero-slide-kashi2,
+          .hero-slider-section .swiper-slide img,
           .hero-slider-section .swiper-slide video {
-            object-fit: contain !important;
+            object-fit: cover !important;
             object-position: center center !important;
+          }
+          .hero-slider-section .swiper-slide img.hero-slide-kashi1 {
+            object-position: center 30% !important;
+          }
+          .hero-slider-section .swiper-slide img.hero-slide-kashi2 {
+            object-position: center 40% !important;
           }
         }
       `}</style>

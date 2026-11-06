@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useSearchParams, useParams } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -223,6 +223,11 @@ export const GrandMelaSlider = () => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(1); // 1 = forward, -1 = backward
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Touch gesture support for mobile swiping
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [touchEndX, setTouchEndX] = useState<number | null>(null);
 
   // Reset to first slide when switching cities
   useEffect(() => {
@@ -234,122 +239,138 @@ export const GrandMelaSlider = () => {
     setCurrentIndex(index);
   }, [currentIndex]);
 
+  const goToNext = useCallback(() => {
+    setDirection(1);
+    setCurrentIndex((prev) => (prev + 1) % activeSlides.length);
+  }, [activeSlides.length]);
+
+  const goToPrev = useCallback(() => {
+    setDirection(-1);
+    setCurrentIndex((prev) => (prev - 1 + activeSlides.length) % activeSlides.length);
+  }, [activeSlides.length]);
+
   // Auto-slide
   useEffect(() => {
+    if (isPaused) return;
     const timer = setInterval(() => {
-      setDirection(1);
-      setCurrentIndex((prev) => (prev + 1) % activeSlides.length);
+      goToNext();
     }, AUTO_SLIDE_INTERVAL);
 
     return () => clearInterval(timer);
-  }, [currentIndex, activeSlides.length]);
+  }, [goToNext, isPaused]);
+
+  // Touch handlers for mobile swipe
+  const minSwipeDistance = 45;
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setIsPaused(true);
+    setTouchEndX(null);
+    setTouchStartX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEndX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    setIsPaused(false);
+    if (touchStartX === null || touchEndX === null) return;
+    const distance = touchStartX - touchEndX;
+    if (distance > minSwipeDistance) {
+      goToNext();
+    } else if (distance < -minSwipeDistance) {
+      goToPrev();
+    }
+    setTouchStartX(null);
+    setTouchEndX(null);
+  };
 
   const currentSlide = activeSlides[currentIndex];
 
   return (
-    <section className="relative w-full h-screen min-h-[600px] overflow-hidden">
+    <section 
+      className="relative w-full h-[58vw] min-h-[260px] max-h-[440px] sm:h-[65vh] sm:min-h-[400px] sm:max-h-[560px] md:h-screen md:min-h-[600px] md:max-h-none overflow-hidden bg-black select-none"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
       {/* Background Images with crossfade */}
       <AnimatePresence mode="popLayout">
         <motion.div
           key={currentIndex}
           className="absolute inset-0 w-full h-full"
-          initial={{ opacity: 0, scale: 1.1 }}
+          initial={{ opacity: 0, scale: 1.05 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1.2, ease: 'easeInOut' }}
+          transition={{ duration: 0.9, ease: 'easeInOut' }}
         >
           <img
             src={currentSlide.image}
             alt={currentSlide.title}
-            className="w-full h-full object-cover"
-            style={{
-              objectPosition: "center 10%",
-            }}
+            className="w-full h-full object-cover object-center md:object-[center_10%]"
             draggable={false}
           />
         </motion.div>
       </AnimatePresence>
 
+      {/* Navigation Arrow - Left */}
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          goToPrev();
+        }}
+        className="absolute left-2 sm:left-4 md:left-6 top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-black/40 hover:bg-black/70 border border-white/20 backdrop-blur-md flex items-center justify-center text-white transition-all shadow-lg hover:scale-105 active:scale-95"
+        aria-label="Previous slide"
+      >
+        <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+      </button>
+
+      {/* Navigation Arrow - Right */}
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          goToNext();
+        }}
+        className="absolute right-2 sm:right-4 md:right-6 top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-black/40 hover:bg-black/70 border border-white/20 backdrop-blur-md flex items-center justify-center text-white transition-all shadow-lg hover:scale-105 active:scale-95"
+        aria-label="Next slide"
+      >
+        <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+      </button>
+
+      {/* Slide Indicators / Dots */}
+      <div className="absolute bottom-2 sm:bottom-3 md:bottom-4 right-3 sm:right-6 md:right-8 z-10 flex items-center gap-1 sm:gap-1.5 md:gap-2">
+        {activeSlides.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={(e) => {
+              e.stopPropagation();
+              goToSlide(idx);
+            }}
+            className={`transition-all duration-300 rounded-full ${
+              idx === currentIndex
+                ? 'w-4 sm:w-6 md:w-8 h-1.5 sm:h-2 md:h-2.5 bg-gradient-to-r from-[#FF9933] to-[#FFD700] shadow-sm'
+                : 'w-1.5 sm:w-2 md:w-2.5 h-1.5 sm:h-2 md:h-2.5 bg-white/40 hover:bg-white/70'
+            }`}
+            aria-label={`Go to slide ${idx + 1}`}
+          />
+        ))}
+      </div>
+
       {/* Text shadow ensures readability without dark overlays */}
-      <div className="absolute inset-0 z-[2] flex flex-col justify-end pb-6 md:pb-8">
-        
+      <div className="absolute inset-0 z-[2] flex flex-col justify-end pb-2.5 sm:pb-4 md:pb-8 pointer-events-none">
         {/* Winners Banner Strip */}
         <div className="w-full">
-          <div className="hero-tagline-banner inline-flex items-center pl-4 pr-8 md:pl-8 md:pr-12 lg:pl-12 py-2 md:py-3">
-            <h1 className="text-xl md:text-2xl lg:text-3xl font-extrabold tracking-tight drop-shadow-lg" style={{ color: '#dd984a' }}>
+          <div className="hero-tagline-banner inline-flex items-center pl-3 pr-6 sm:pl-6 sm:pr-10 md:pl-8 md:pr-12 lg:pl-12 py-1.5 sm:py-2 md:py-3 pointer-events-auto">
+            <h1 className="text-sm sm:text-lg md:text-2xl lg:text-3xl font-extrabold tracking-tight drop-shadow-lg" style={{ color: '#dd984a' }}>
               {isJaipur
                 ? (language === 'hi' ? 'रंगीलो जयपुर के विजेता' : 'Winners of Rangeelo Jaipur')
                 : (language === 'hi' ? 'रंगीलो काशी के विजेता' : 'Winners of Rangeelo Kashi')}
             </h1>
           </div>
         </div>
-
-        {/* <div className="container-custom px-6 md:px-12 lg:px-20 w-full">
-          <div className="max-w-xl drop-shadow-2xl">
-           
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={`sub-${currentIndex}`}
-                className="inline-block text-[#D97706] text-xs md:text-sm font-semibold tracking-wide mb-3"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-              >
-                {currentSlide.subtitle}
-              </motion.span>
-            </AnimatePresence>
-
-            
-            <AnimatePresence mode="wait">
-              <motion.h2
-                key={`title-${currentIndex}`}
-                className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-[1.15] mb-4 whitespace-pre-line drop-shadow-lg"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                {currentSlide.title}
-              </motion.h2>
-            </AnimatePresence>
-
-            
-            <AnimatePresence mode="wait">
-              <motion.p
-                key={`desc-${currentIndex}`}
-                className="text-white text-sm md:text-base max-w-lg mb-6 leading-relaxed font-medium drop-shadow-md"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.5, delay: 0.35 }}
-              >
-                {currentSlide.description}
-              </motion.p>
-            </AnimatePresence>
-
-            
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={`cta-${currentIndex}`}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.5, delay: 0.45 }}
-              >
-                <a
-                  href="#register"
-                  className="inline-flex items-center gap-3 px-6 py-3 rounded-full border-2 border-white/30 text-white font-semibold text-sm hover:bg-white hover:text-[#3A1008] transition-all duration-300 group"
-                >
-                  Learn More  Register Animal
-                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </a>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        </div> */}
       </div>
-
     </section>
   );
 };

@@ -252,15 +252,15 @@
   object-position: center 10%;
 }
 
-/* Mobile: prevent image cropping on portrait screens */
+/* Mobile: ensure full cover without black background/bars */
 @media (max-width: 767px) {
   .hero-slider-section .swiper-slide {
-    background: #1a0a0a;
+    background: transparent;
   }
 
   .hero-slider-section .swiper-slide img {
-    object-fit: contain;
-    object-position: center center;
+    object-fit: cover !important;
+    object-position: center center !important;
   }
 }
 
@@ -388,9 +388,17 @@
   box-shadow: 0 0 12px rgba(255, 153, 51, 0.5);
 }
 
-/* Override default Swiper pagination positioning */
-.hero-slider-section .swiper-pagination {
-  position: static !important;
+/* Custom Pagination Positioning */
+.hero-slider-section .hero-pagination {
+  position: absolute !important;
+  bottom: 0.75rem !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+  z-index: 20 !important;
 }
 
 /* Hide Swiper default nav buttons */
